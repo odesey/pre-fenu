@@ -1,0 +1,1 @@
+Dishes = new Meteor.Collection('dishes');
