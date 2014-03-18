@@ -1,3 +1,14 @@
 <template name="waiterRoot">
-	<h1>Waiter Root!</h1>
+	<div class="form-group">
+		<label for="inputName" class="col-sm-2 control-label">Name</label>
+		<div class="col-sm-4">
+			<input name="name" type="name" type="text" class="form-control" id="name" placeholder="Enter Your Name">
+		</div>
+	</div>
+	<button id="addTable" type="button" class="btn btn-default btn-lg">
+	  <span class="glyphicon glyphicon-plus-sign"></span> Add New Table
+	</button>
+	{{#each myTables}}
+      {{> table}}
+    {{/each}}
 </template>

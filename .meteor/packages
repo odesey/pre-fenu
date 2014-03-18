@@ -10,3 +10,6 @@ preserve-inputs
 bootstrap-3
 iron-router
 accounts-ui-bootstrap-3
+accounts-password
+roles
+accounts-admin-ui-bootstrap-3
