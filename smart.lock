@@ -6,7 +6,8 @@
       "iron-router": {},
       "accounts-ui-bootstrap-3": {},
       "roles": {},
-      "accounts-admin-ui-bootstrap-3": {}
+      "accounts-admin-ui-bootstrap-3": {},
+      "jqBootstrapValidation": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/hharnisc/meteor-accounts-admin-ui-bootstrap-3.git",
         "tag": "v0.2.3",
         "commit": "c396f28bdcfa6f20c67948fe17841746337f9016"
+      },
+      "jqBootstrapValidation": {
+        "git": "https://github.com/wahyuaw/meteor-jqBootstrapValidation.git",
+        "tag": "v0.0.1",
+        "commit": "66a91f82b8a8a955e639357ebf895f3256f0df16"
       }
     }
   }

@@ -2,12 +2,15 @@ Template.reDirect.events({
   'submit form': function(e) {
     e.preventDefault();
     var code = $("input#tableCode").val();
+    var guest = $("input#name").val();
+    var table = Tables.findOne({number: Number(code)});
     // check if the code field is not empty and is only numeric characters
     if (code !== "" && $.isNumeric(code)) {
       if (code.length == 5) {
         console.log('redirect to menu root page');
-        // var codeCheck = Tables.find({number: code}).fetch().length;
-        if (Tables.find({number: Number(code)}).count() !== 0) {
+        if (table !== undefined) {
+          Tables.update(table._id, {$addToSet: {guests: guest} });
+          Session.set("tableID", table._id);
           Router.go('menuRoot');
         } else {
           console.log('code not found in table DB');
