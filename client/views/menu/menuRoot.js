@@ -16,3 +16,13 @@ Handlebars.registerHelper("guests", function() {
   		return false;
   	};
 });
+
+Template.menuRoot.events({
+  'click .del': function(e) {
+  	var currentTableID = Tables.findOne(Session.get("tableID"))._id;
+  	var guestToDelete = $(e.target).parent().text().trim();
+  	Tables.update(currentTableID, {$pull: {guests: guestToDelete} });
+    console.log('delete a user');
+    // console.log(e);
+  }
+})
