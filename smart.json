@@ -4,7 +4,6 @@
     "iron-router": {},
     "accounts-ui-bootstrap-3": {},
     "roles": {},
-    "accounts-admin-ui-bootstrap-3": {},
     "jqBootstrapValidation": {}
   }
 }
