@@ -12,19 +12,47 @@
       <a class="navbar-brand" href="{{pathFor 'reDirect'}}">Fenu</a>
       {{# if guests}}
       <ul class="nav nav-pills navbar-right">
-        <li class="active">
-          <a href="#">
-            <span class="badge pull-right">{{guests.length}}</span>
-            Guests
+        <li class="active dropdown">
+          <a href="#" class="dropdown-toggle br-red" data-toggle="dropdown">
+            <!-- Link Icon -->
+            <i class="badge pull-left">{{guests.length}} </i>
+            <!-- Link Title -->
+            <span class="link-title"> Guests <b class="fa fa-angle-down"></b></span> 
           </a>
+          <ul class="dropdown-menu dropdown-default">
+            {{#each guests}}
+            <li><i class="fa fa-arrow-right dd-link-icon lblue"></i> {{this}}<span id="delUser" class="fa fa-times-circle pull-right red"></span></li>
+            {{/each}}
+          </ul>
         </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle br-pink" data-toggle="dropdown">
+            <!-- Link Icon -->
+            <i class="fa fa-file link-icon"></i>
+            <!-- Link Title -->
+            <span class="link-title">Page 2 <b class="fa fa-angle-down"></b></span> 
+          </a>
+          <ul class="dropdown-menu dropdown-default">
+            <li><a href="careers.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Careers</a></li>
+            <li><a href="faq.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Faq</a></li>
+            <li><a href="resume.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Resume</a></li>
+            <li><a href="landing-page.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Landing Page</a></li>
+            <li><a href="index-column.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Column Index</a></li>
+            <li><a href="service.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Service</a></li>
+            <li><a href="sitemap.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Site Map</a></li>
+            <li><a href="time-line.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Time Line</a></li>
+          </ul>
+        </li>
+        
       </ul>
       {{/if}}
-      <ul class="nav navbar-nav navbar-right">
-      {{ loginButtons }}
-      </ul>
     </div>
-
+    {{# if staffLoggedIn }}
+      <ul class="nav navbar-nav navbar-right">
+      {{ loginButtons }} <!-- here -->
+    </ul>
+    {{/if}}
   </div><!-- /.container-fluid -->
 </nav>
 </template>

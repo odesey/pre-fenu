@@ -10,7 +10,7 @@ Meteor.subscribe('staff');
 // Meteor.subscribe('tables');
 
 Template.reDirect.events({
-  'submit form': function(e) {
+  'submit #accessForm': function(e) {
     e.preventDefault();
     // Session.set('staffMember', false);
     var code = $("input#tableCode").val();
@@ -23,7 +23,10 @@ Template.reDirect.events({
       if (code.length == 5) {
         console.log('redirect to menu root page');
         if (table !== undefined) {
-          Tables.update(table._id, {$addToSet: {guests: $(guest).val()} });
+          Meteor.call('addGuest', code, userNameEntered, function (error, result) {
+           // console.log(result);
+         } );
+          // Tables.update(table._id, {$addToSet: {guests: $(guest).val()} });
           Session.set("tableID", table._id);
           Router.go('menuRoot');
         } else {
@@ -34,7 +37,7 @@ Template.reDirect.events({
         console.log('redirect to waiter root page');
         // Meteor.call('validUserName', userNameEntered);
 
-        Meteor.call('validUserName', userNameEntered, function (isUserNameValid, result) {
+        Meteor.call('validUserName', userNameEntered, code, function (isUserNameValid, result) {
             console.log(result);
             console.log(isUserNameValid);
              if (result == true) {
@@ -57,7 +60,8 @@ Template.reDirect.events({
           $(elPass).attr("placeholder", "Enter Your Password");
           $(elPass).focus();
           $('#submit').text('Login').removeClass("btn-success").addClass('btn-primary');
-          $('#submit').attr('id', 'login');
+          $('#accessForm').attr('id', 'loginForm');
+          // $('#submit').attr('id', 'login');
           // Router.go('waiterRoot');
         }
 
@@ -68,19 +72,19 @@ Template.reDirect.events({
     };
     
   },
-  'click #login': function(e, t) {
+  'submit #loginForm': function(e, t) {
     console.log('time to login');
     e.preventDefault();
       // retrieve the input field values
-      var username = $('input#name').val();
-      var password = $('#password').val();
+      var username = t.find('#name').value;
+      var password = t.find('#tableCode').value;
 
         // Trim and validate your fields here.... 
 
         // If validation passes, supply the appropriate fields to the
         // Meteor.loginWithPassword() function.
         console.log('about to login');
-        Meteor.loginWithPassword({username: username, password: password}, function(err){
+        Meteor.loginWithPassword({username:username}, password, function(err){
           console.log('in the login function');
           if (err) {console.log(err);}
           // The user might not have been found, or their passwword
