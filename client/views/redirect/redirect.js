@@ -16,7 +16,7 @@ Template.reDirect.events({
     var code = $("input#tableCode").val();
     var guest = $("input#name");
     var userNameEntered = $(guest).val();
-    var table = Tables.findOne({number: Number(code)});
+    var table = Tables.findOne({code: Number(code)});
     // var isValidUsername = Meteor.call('validUserName', userNameEntered);
     // check if the code field is not empty and is only numeric characters
     if (code !== "" && $.isNumeric(code)) {

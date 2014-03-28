@@ -17,7 +17,7 @@ Template.header.helpers({
 });
 
 Template.header.events({
-  'click #delUser': function(e) {
+  'click .del': function(e) {
     console.log('clicked delete');
   	var code = Tables.findOne(Session.get("tableID"))._id;
   	var guestToDelete = $(e.target).parent().text().trim();

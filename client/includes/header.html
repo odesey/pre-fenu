@@ -1,58 +1,89 @@
 <template name="header">
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> -->
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      <!-- </button> -->
-      <a class="navbar-brand" href="{{pathFor 'reDirect'}}">Fenu</a>
-      {{# if guests}}
-      <ul class="nav nav-pills navbar-right">
-        <li class="active dropdown">
-          <a href="#" class="dropdown-toggle br-red" data-toggle="dropdown">
-            <!-- Link Icon -->
-            <i class="badge pull-left">{{guests.length}} </i>
-            <!-- Link Title -->
-            <span class="link-title"> Guests <b class="fa fa-angle-down"></b></span> 
-          </a>
-          <ul class="dropdown-menu dropdown-default">
-            {{#each guests}}
-            <li><i class="fa fa-arrow-right dd-link-icon lblue"></i> {{this}}<span id="delUser" class="fa fa-times-circle pull-right red"></span></li>
-            {{/each}}
-          </ul>
-        </li>
+      <!-- Header Start -->
+      <div class="header">
+        <!-- Header Information -->
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle br-pink" data-toggle="dropdown">
-            <!-- Link Icon -->
-            <i class="fa fa-file link-icon"></i>
-            <!-- Link Title -->
-            <span class="link-title">Page 2 <b class="fa fa-angle-down"></b></span> 
-          </a>
-          <ul class="dropdown-menu dropdown-default">
-            <li><a href="careers.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Careers</a></li>
-            <li><a href="faq.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Faq</a></li>
-            <li><a href="resume.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Resume</a></li>
-            <li><a href="landing-page.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Landing Page</a></li>
-            <li><a href="index-column.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Column Index</a></li>
-            <li><a href="service.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Service</a></li>
-            <li><a href="sitemap.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Site Map</a></li>
-            <li><a href="time-line.html"><i class="fa fa-arrow-right dd-link-icon lblue"></i> Time Line</a></li>
-          </ul>
-        </li>
-        
-      </ul>
-      {{/if}}
-    </div>
-    {{# if staffLoggedIn }}
-      <ul class="nav navbar-nav navbar-right">
-      {{ loginButtons }} <!-- here -->
-    </ul>
-    {{/if}}
-  </div><!-- /.container-fluid -->
-</nav>
+        <!-- Header Navigation -->
+        <div class="header-navigation">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <!-- Logo -->
+                <div class="logo">
+                  <!-- Heading -->
+                  <h1><a href="{{pathFor 'reDirect'}}"><i class="fa fa-pagelines br-red"></i> Fenu-Menu</a></h1>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <!-- Bootstrap Navbar -->
+                <nav class="navbar navbar-default" role="navigation">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle br-orange" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                  </div>
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle br-red" data-toggle="dropdown">
+                          <!-- Link Icon -->
+                          <i class="fa fa-smile-o"></i>
+                          <!-- Link Title -->
+                          <span class="link-title">Waiter<b class="fa fa-angle-down"></b></span> 
+                        </a>
+                        <ul class="dropdown-menu dropdown-sm">
+                          <li>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="col-inner col-disable">
+                                  <h4 class="br-orange"><i class="fa fa-share heading-icon"></i> Suffered Inaltera</h4>
+                                  <p>There are many variations of box passages of Lorem Ipsum blackly available, but the majority have non suffered in alteration in some one form, by injected humour, or book randomised even slightly forms believable.</p>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="col-inner">
+                                  <ul class="list-unstyled">
+                                    <li><a href="error.html"><i class="fa fa-arrow-right dd-link-icon"></i> 404 Error</a></li>
+                                    <li><a href="coming-soon.html"><i class="fa fa-arrow-right dd-link-icon"></i> Coming Soon</a></li>
+                                    <li><a href="feature.html"><i class="fa fa-arrow-right dd-link-icon"></i> Features</a></li>
+                                    <li><a href="gallery.html"><i class="fa fa-arrow-right dd-link-icon"></i> Gallery</a></li>
+                                    <li><a href="login.html"><i class="fa fa-arrow-right dd-link-icon"></i> Login</a></li>
+                                    <li><a href="login.html"><i class="fa fa-arrow-right dd-link-icon"></i> Register</a></li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                      {{# if guests}}
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle br-blue" data-toggle="dropdown">
+                          <!-- Group Icon -->
+                          <i class="fa fa-group"></i>
+                          <i class="badge pull-right">{{guests.length}} </i>
+                          <!-- Link Title -->
+                          <span class="link-title">Guests <b class="fa fa-angle-down"></b></span> 
+                        </a>
+                        <ul class="dropdown-menu dropdown-default">
+                          {{#each guests}}
+                          <li><a href="#"><i class="del fa fa-times dd-link-icon red"></i> {{this}}</a></li>
+                          {{/each}}
+                        </ul>
+                      </li>
+                      {{/if}}
+                    </ul>
+                  </div><!-- /.navbar-collapse -->
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Header End -->
 </template>

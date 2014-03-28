@@ -17,7 +17,7 @@ Meteor.methods({
             return !!validUser;
         } else if (validUser.profile.pin !== Number(code)) {
             return "inval code";
-        };;
+        };
         // console.log(Meteor.users.findOne({username: userName}) + ' fetch');
         // console.log(validUser + ' validUser');
         // console.log(!!validUser);
@@ -35,19 +35,29 @@ Meteor.methods({
 Meteor.methods({
   addGuest : function(guestCode, guestName){
     // console.log('Adding guest ...' + guestCode);
-    var table = Tables.findOne({number: Number(guestCode)});
+    var table = Tables.findOne({code: Number(guestCode)});
     Tables.update(table._id, {$addToSet: {guests: guestName} });
     // console.log(table);
     return table;
-  }
-});
-
-Meteor.methods({
+  },
   removeGuest : function(guestCode, guestName){
     // console.log('Adding guest ...' + guestCode);
     var table = Tables.findOne(guestCode);
     Tables.update(table, {$pull: {guests: guestName} });
     // console.log(table + ' table found?');
     return table;
+  },
+  addTable: function(table) {
+    console.log(table);
   }
 });
+
+// Meteor.methods({
+//   removeGuest : function(guestCode, guestName){
+//     // console.log('Adding guest ...' + guestCode);
+//     var table = Tables.findOne(guestCode);
+//     Tables.update(table, {$pull: {guests: guestName} });
+//     // console.log(table + ' table found?');
+//     return table;
+//   }
+// });
