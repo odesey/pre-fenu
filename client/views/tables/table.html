@@ -1,12 +1,43 @@
 <template name="table">
-  <div class="entry">
-    <!-- Meta for this block -->
-    <div class="meta br-green">
-      <!-- Date -->
-      <div class="post-date"><span>{{code}}</span>Table #{{tableNumber}}</div>
-      <!-- Post Information -->
-      <div class="meta-info"><a href="#"><i class="fa fa-user"></i> <span>{{numberOfGuests}} Guest(s)</span></a></div>
-      <div class="meta-info"><a href="#"><i class="fa fa-comment"></i> <span>0 Messages</span></a></div>
+<div class='col-sm-4'>
+  <div class='box box-bordered box-nomargin'>
+    <div class='box-header blue-background'>
+      <div class='title'>
+        <i class='icon-map-marker'></i>
+        Table: {{tableNumber}} / Code: {{code}}
+      </div>
+      <div class='actions'>
+        <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+        </a>
+        
+        <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+        </a>
+      </div>
+    </div>
+    <div class='box-content'>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge">{{numberOfGuests}}</span>
+                <i class="icon-group"></i>
+                Guests
+            </li>
+            <li class="list-group-item">
+                <span class="badge badge-warning">2</span>
+                <i class="icon-comments"></i>
+                Messages
+            </li>
+            <li class="list-group-item">
+                <span class="badge badge-info">1</span>
+                <i class="icon-food"></i>
+                Orders
+            </li>
+            <li class="list-group-item">
+                <span class="badge badge-success">$56.30</span>
+                <i class="icon-dollar"></i>
+                Tab
+            </li>
+        </ul>
     </div>
   </div>
+</div>
 </template>

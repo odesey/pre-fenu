@@ -1,54 +1,43 @@
 <template name="waiterRoot">
+ 
+    <div class="container">
 
-<!-- 	<button id="addTable" type="button" class="btn btn-default btn-lg">
-	  <span class="glyphicon glyphicon-plus-sign"></span> Add New Table
-	</button> -->
-	<div class="box-wrapper">
-		<div class="container">
+        <div class="row">
 
-		</div>
-	</div>
-
-		
-<div class="inner-page">
-  <div class="container">
-    <div class="row">
-      <!-- Main-bar Column -->
-      <div class="col-md-9">
-        <div class="page-mainbar blog">
-          <!-- Heading -->
-          <h3>Blog</h3>
-          <!-- Blog Page Content -->
-          <div class="blog-content">
-            <div class="row">
-              <div class="col-md-8 col-sm-8">
-
+            <div class="col-lg-12">
+                <h1 class="page-header">{{firstName}} Tables</h1>
                 <div class="form-group">
                   <!-- <label for="inputName" class="col-sm-2 control-label">Name</label> -->
                   <div class="col-sm-4">
                     <input name="tableNumber" type="name" type="text" class="form-control" id="tableNumber" placeholder="Enter Table Number">
                   </div>
-                  <button id="addTable" type="button" class="btn btn-default btn-lg">
+                  <button id="addTable" type="button" class="btn btn-default ">
                   <span class="glyphicon glyphicon-plus-sign"></span> Add New Table
                 </button>
                 </div>
-                
-                <!-- The new post done by user's all in the post block -->
-                <div class="blog-post">
-                  <!-- Entry is the one post for each user -->
-                    {{#each myTables}}
-                      {{> table}}
-                    {{/each}}
-                  
-                </div>
-              </div>
             </div>
-          </div>
+
+            {{#each myTables}}
+              {{> table}}
+            {{/each}}
+            
         </div>
-      </div>
+
+        <hr>
+
     </div>
-  </div>
-</div>
 
 
 </template>
+
+
+
+
+
+
+
+
+
+
+
+

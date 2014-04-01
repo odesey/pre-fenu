@@ -18,5 +18,10 @@ Template.waiterRoot.helpers({
 	myTables: function () {
 		var currentUser = Meteor.userId();
 		return Tables.find({creator: currentUser});
+	},
+	firstName: function() {
+		if (Meteor.user()) {
+			return Meteor.user().profile.firstName;
+		};		
 	}
 });
