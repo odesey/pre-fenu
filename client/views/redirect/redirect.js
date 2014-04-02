@@ -28,6 +28,7 @@ Template.reDirect.events({
          } );
           // Tables.update(table._id, {$addToSet: {guests: $(guest).val()} });
           Session.set("tableID", table._id);
+          Session.set("currentGuest", userNameEntered);
           Router.go('menuRoot');
         } else {
           console.log('code not found in table DB');

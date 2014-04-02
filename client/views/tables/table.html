@@ -1,7 +1,7 @@
 <template name="table">
 <div class='col-sm-4'>
   <div class='box box-bordered box-nomargin'>
-    <div class='box-header blue-background'>
+    <div class='box-header box-header-small blue-background'>
       <div class='title'>
         <i class='icon-map-marker'></i>
         Table: {{tableNumber}} / Code: {{code}}
@@ -16,26 +16,53 @@
     </div>
     <div class='box-content'>
         <ul class="list-group">
-            <li class="list-group-item">
-                <span class="badge">{{numberOfGuests}}</span>
-                <i class="icon-group"></i>
-                Guests
-            </li>
-            <li class="list-group-item">
-                <span class="badge badge-warning">2</span>
-                <i class="icon-comments"></i>
-                Messages
-            </li>
-            <li class="list-group-item">
-                <span class="badge badge-info">1</span>
-                <i class="icon-food"></i>
-                Orders
-            </li>
-            <li class="list-group-item">
-                <span class="badge badge-success">$56.30</span>
-                <i class="icon-dollar"></i>
-                Tab
-            </li>
+          <li class="list-group-item">
+            <a class='dropdown-collapse ' href='#'>
+              <i class='icon-group'></i>
+              <span>Guests</span>
+              <span class="badge pull-right">{{numberOfGuests}}</span>
+              <i class='icon-angle-right angle-down '></i>
+            </a>
+            <ul class='nav nav-stacked' style="display: none">
+              {{#each myGuests}}
+              <li class=''>
+                <a href='ui_elements.html'>
+                  <i class='icon-user'></i>
+                  <span>{{this}}</span>
+                </a>
+              </li>
+              {{/each}}
+            </ul>
+          </li>
+
+          <li class="list-group-item">
+            <a class='dropdown-collapse ' href='#'>
+              <i class='icon-comments'></i>
+              <span>Messages</span>
+              <span class="badge badge-warning pull-right">{{messageCount}}</span>
+              <i class='icon-angle-right angle-down '></i>
+            </a>
+            <ul class='nav nav-stacked' style="display: none">
+              {{#each myMessages}}
+              <li class=''>
+                <a href='ui_elements.html'>
+                  <i class='icon-user'></i>
+                  <span>{{messageText}}</span>
+                </a>
+              </li>
+              {{/each}}
+            </ul>
+          </li>
+          <li class="list-group-item">
+              <span class="badge badge-info">0</span>
+              <i class="icon-food"></i>
+              Orders
+          </li>
+          <li class="list-group-item">
+              <span class="badge badge">$0</span>
+              <i class="icon-dollar"></i>
+              Tab
+          </li>
         </ul>
     </div>
   </div>

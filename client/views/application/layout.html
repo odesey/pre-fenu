@@ -1,9 +1,8 @@
 <template name="layout">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	{{> header}}
   <div class="container">
-  	{{# if guest}}
-  		{{> header}}
-  	{{/if}}
+
   	{{> errors}}
     <div id="main" class="row-fluid">
       {{yield}}
