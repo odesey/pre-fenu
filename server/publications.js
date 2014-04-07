@@ -3,9 +3,9 @@ Meteor.publish('tables', function() {
 });
 
 Meteor.publish("staff", function () {
-    return Meteor.users.find({}, {fields: {username: 1,'profile.pin': 1}});
+    return Meteor.users.find({}, {fields: {username: 1,'profile': 1}});
 });
 
 Meteor.publish('messages', function() {
-	return Messages.find();
+	return Messages.find({}, {sort: {submitted: -1}});
 })

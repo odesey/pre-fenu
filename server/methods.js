@@ -10,9 +10,9 @@ Meteor.methods({
         // Meteor.users.findOne({email: userName}); 
         // http://stackoverflow.com/questions/13563980/meteor-querying-other-users-by-email
         // var validUser =  Meteor.users.findOne({'emails.address': 'waiter@mail.com'});
-        console.log(code);
+        // console.log(code);
         var validUser =  Meteor.users.findOne({'username': userName});
-        console.log(validUser.profile.pin);
+        // console.log(validUser.profile.pin);
         if (validUser.profile.pin == Number(code)) {
             return !!validUser;
         } else if (validUser.profile.pin !== Number(code)) {
@@ -46,10 +46,10 @@ Meteor.methods({
     Tables.update(table, {$pull: {guests: guestName} });
     // console.log(table + ' table found?');
     return table;
-  },
-  addTable: function(table) {
-    console.log(table);
   }
+  // addTable: function(table) {
+  //   // console.log(table);
+  // }
 });
 
 // Meteor.methods({

@@ -3066,11 +3066,11 @@ body {
       width: 23px;
       height: 23px; }
     .chat ul > li .name-and-time {
-      margin-left: 33px;
+      margin-left: 16px;
       overflow: hidden;
       *zoom: 1; }
     .chat ul > li .body {
-      margin-left: 33px; }
+      margin-left: 16px; }
     .chat ul > li .time {
       font-size: 12px; }
     .chat ul > li:last-child {

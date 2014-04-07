@@ -8,7 +8,7 @@
     
 //   }
 // });
-
+// Meteor.subscribe('tables');
 
 Template.header.helpers({
   staffLoggedIn: function () {
@@ -16,14 +16,15 @@ Template.header.helpers({
   },
   myWaiterName: function () {
     var myTable = Tables.findOne(Session.get("tableID"));
+    // console.log("myWaiterName helper");
     if (myTable !== undefined) {
+      // console.log("myWaiterName helper if statement is true");
       var tableCreator = Tables.findOne({_id: Session.get('tableID')}).creator;
       var myWaiter = Meteor.users.findOne({_id: tableCreator});
       return myWaiter.profile;
     } else {
-      return;
+      console.log('myWaiter helper error!');
     };
-    
   }
 });
 
@@ -42,10 +43,12 @@ Template.header.events({
   'click #sendMessage': function(e) {
     e.preventDefault();
     var $msg = $("#messageText");
+    var tableID;
+
     var message = {
       messageText: $msg.val(),
       tableID: Session.get("tableID"),
-      guest: Session.get("currentGuest")
+      guest: Session.get("currentGuest") == undefined ? Meteor.user().profile.firstName : Session.get("currentGuest")
     };
     Meteor.call('message', message, function(error, messageId) {
       if (error){
@@ -57,5 +60,8 @@ Template.header.events({
     $msg.val('');
     console.log('submitted modal mesageForm');
     $('#messageModal').modal('toggle');
+    if (Meteor.user()) {
+      Session.set("tableID", undefined);
+    }; 
   }
 });

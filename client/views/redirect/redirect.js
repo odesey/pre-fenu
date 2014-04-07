@@ -26,9 +26,13 @@ Template.reDirect.events({
           Meteor.call('addGuest', code, userNameEntered, function (error, result) {
            // console.log(result);
          } );
+          Meteor.call('lastReadTime', function (error, result) {
+            Session.set("lastReadTime", result);
+          });
           // Tables.update(table._id, {$addToSet: {guests: $(guest).val()} });
           Session.set("tableID", table._id);
           Session.set("currentGuest", userNameEntered);
+          
           Router.go('menuRoot');
         } else {
           console.log('code not found in table DB');
@@ -97,6 +101,9 @@ Template.reDirect.events({
           }
           // The user has been logged in.
           console.log(err);
+          Meteor.call('lastReadTime', function (error, result) {
+            Session.set("lastReadTime", result);
+          });
       });
         return false; 
       }

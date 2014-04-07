@@ -11,13 +11,13 @@
 //   }
 // });
 
-Handlebars.registerHelper("guests", function() {
-  if (Tables.findOne(Session.get("tableID")) !== undefined) {
-  		return Tables.findOne(Session.get("tableID")).guests;
-  	} else {
-  		return false;
-  	};
-});
+// Handlebars.registerHelper("guests", function() {
+//   if (Tables.findOne(Session.get("tableID")) !== undefined) {
+//   		return Tables.findOne(Session.get("tableID")).guests;
+//   	} else {
+//   		return false;
+//   	};
+// });
 
 Template.menuRoot.events({
   // 'submit form': function(e) {

@@ -1,5 +1,5 @@
 <template name="table">
-<div class='col-sm-4'>
+<div class='col-sm-4' data-lastRead=''>
   <div class='box box-bordered box-nomargin'>
     <div class='box-header box-header-small blue-background'>
       <div class='title'>
@@ -7,8 +7,8 @@
         Table: {{tableNumber}} / Code: {{code}}
       </div>
       <div class='actions'>
-        <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
-        </a>
+        <a class="btn btn-xs btn-link comment" data-toggle='modal' data-code="{{code}}" href='#messageModal' role='button'><i class='icon-comment'></i></a>
+        <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i></a>
         
         <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
         </a>
@@ -17,7 +17,7 @@
     <div class='box-content'>
         <ul class="list-group">
           <li class="list-group-item">
-            <a class='dropdown-collapse ' href='#'>
+            <a class='dropdown-collapse guests' href='#'>
               <i class='icon-group'></i>
               <span>Guests</span>
               <span class="badge pull-right">{{numberOfGuests}}</span>
@@ -25,7 +25,7 @@
             </a>
             <ul class='nav nav-stacked' style="display: none">
               {{#each myGuests}}
-              <li class=''>
+              <li class='guest'>
                 <a href='ui_elements.html'>
                   <i class='icon-user'></i>
                   <span>{{this}}</span>
@@ -35,22 +35,45 @@
             </ul>
           </li>
 
-          <li class="list-group-item">
-            <a class='dropdown-collapse ' href='#'>
+          <li class="msg list-group-item">
+            <a class='dropdown-collapse messages' href='#'>
               <i class='icon-comments'></i>
               <span>Messages</span>
-              <span class="badge badge-warning pull-right">{{messageCount}}</span>
+              <span class="msgCount badge badge-warning pull-right">{{newMessages}}/{{messageCount}}</span>
               <i class='icon-angle-right angle-down '></i>
             </a>
             <ul class='nav nav-stacked' style="display: none">
-              {{#each myMessages}}
-              <li class=''>
-                <a href='ui_elements.html'>
-                  <i class='icon-user'></i>
-                  <span>{{messageText}}</span>
-                </a>
-              </li>
-              {{/each}}
+              <div class='chat'>
+              <div class='scrollable' data-scrollable-height='300' data-scrollable-start='bottom'>
+                <ul class='list-unstyled list-hover list-striped'>
+                  {{#each myMessages}}
+
+                  <li class='message'>
+                    <div class='avatar'>
+                      <i class='icon-user'></i>
+                    </div>
+                    <div class='name-and-time'>
+                      <div class='name pull-left'>
+                        <small>
+                          <a class="text-contrast" href="#">{{guest}}</a>
+                        </small>
+                      </div>
+                      <div class='time pull-right'>
+                        <small class='date pull-right text-muted'>
+                          {{submitted}}
+                          <i class='icon-time'></i>
+                        </small>
+                      </div>
+                    </div>
+                    <div class='body'>
+                      {{messageText}}
+                    </div>
+                  </li>
+
+                  {{/each}}
+                </ul>
+              </div>
+              </div>
             </ul>
           </li>
           <li class="list-group-item">
@@ -67,4 +90,5 @@
     </div>
   </div>
 </div>
+
 </template>

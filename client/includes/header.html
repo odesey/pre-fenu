@@ -3,13 +3,46 @@
 <header>
   <nav class='navbar navbar-default'>
     <a class='navbar-brand' href="{{pathFor 'reDirect'}}">Fenu
-      <img width="21" height="21" class="logo-xs" alt="Fenu" src="/images/logo_xs.svg" />
+      <!-- <img width="21" height="21" class="logo-xs" alt="Fenu" src="/images/logo_xs.svg" /> -->
     </a>
     <a class='toggle-nav btn pull-left' href='#'>
       <i class='icon-reorder'></i>
     </a>
     <ul class='nav'>
       {{# if guests}}
+
+      <li class='dropdown medium only-icon widget'>
+        <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+          <i class='icon-comments'></i>
+          <div class='label'>{{messageCount}}</div>
+        </a>
+        <ul class='dropdown-menu '>
+          <!-- each message code start -->
+          {{#each myMessages}}
+          <li>
+            <a href='#'>
+              <div class='widget-body'>
+                <div class='pull-left icon'>
+                  <i class='icon-user text-success'></i>
+                </div>
+                <div class='pull-left text'>
+                  {{messageText}}
+                  <!-- <small class='pull-right text-muted'>just now</small> -->
+                  <i class='del pull-right icon-long-arrow-right'></i>
+                </div>
+
+              </div>
+            </a>
+          </li>
+
+          <li class='divider'></li>
+          {{/each}}
+          <!-- each message code end -->
+
+        </ul>
+      </li>
+
+
       <li class='dropdown medium only-icon widget'>
         <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
           <i class='icon-group'></i>
@@ -60,10 +93,11 @@
           </li>
           <li class='divider'></li>
           <li>
-            <a href='sign_in.html'>
+            <a href='#'>
               <i class='icon-signout'></i>
               Sign out
             </a>
+            
           </li>
         </ul>
       </li>
