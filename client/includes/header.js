@@ -63,5 +63,30 @@ Template.header.events({
     if (Meteor.user()) {
       Session.set("tableID", undefined);
     }; 
-  }
+  },
+  'click .guestMsgToggle': function(e) {
+    // console.log('clicked dropdown to view messages');
+    var messageCount = $('.guestMsgCount');
+    var messageList = $('[data-submitted]');
+    $(messageCount).text(0 + '/' + messageList.length);
+    Session.set("lastReadTime", new Date().getTime());
+  },
 });
+
+Template.header.rendered = function(){
+  var timeRef = Session.get("lastReadTime");
+  var messageList = $('[data-submitted]');
+  var i = 0;
+  var messageCount = $('.guestMsgCount');
+  if (messageList.length != 0) {
+    $(messageList).each(function(index, element){
+      var date1 = new Date($(element).data("submitted"));
+      var date2 = new Date(timeRef);
+      if (date1 > date2) {
+          // console.log("last msg checked time less than message time");
+          i++;
+      }
+    });
+  };
+  $(messageCount).text(i + '/' + messageList.length);
+};
