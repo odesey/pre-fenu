@@ -1,20 +1,20 @@
 <template name="header">
 
 <header>
-  <nav class='navbar navbar-default'>
+  <nav class='navbar navbar-default '>
     <a class='navbar-brand' href="{{pathFor 'reDirect'}}">Fenu
       <!-- <img width="21" height="21" class="logo-xs" alt="Fenu" src="/images/logo_xs.svg" /> -->
     </a>
-    <a class='toggle-nav btn pull-left' href='#'>
+    <div class='sb-toggle-left toggle-nav btn pull-left'>
       <i class='icon-reorder'></i>
-    </a>
+    </div>
     <ul class='nav'>
       {{# if guests}}
 
       <li class='dropdown medium only-icon widget'>
         <a class='guestMsgToggle dropdown-toggle' data-toggle='dropdown' href='#'>
           <i class='icon-comments'></i>
-          <div class='guestMsgCount label'>{{messageCount}}</div>
+          <div class='guestMsgCount label'></div>
         </a>
         <ul class='dropdown-menu '>
           <!-- each message code start -->
@@ -104,4 +104,5 @@
   </nav>
 </header>
 {{>messageForm}}
+{{>sidebar}}
 </template>

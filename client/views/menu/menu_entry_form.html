@@ -1,0 +1,59 @@
+<template name="menuEntryForm">
+	<div class='row'>
+	  <div class='col-sm-12'>
+	    <div class='box'>
+	      <div class='box-header red-background'>
+	        <div class='title'>
+	          <div class='icon-edit'></div>
+	          Vertical form
+	        </div>
+	      </div>
+	      <div class='box-content'>
+	        <form id="menuForm" class="form" >
+	        <div class='form-group'>
+	          <label for='inputText'>Name</label>
+	          <input class='form-control' id='name' placeholder='Text field' type='text'>
+	        </div>
+	        <div class='form-group'>
+	          <label>Price</label>
+	          <div class='row'>
+	            <div class='col-sm-6 col-md-6 col-lg-4'>
+	              <div class='input-group'>
+	                <span class='input-group-addon'>$</span>
+	                <input class='form-control' id='price' type='text'>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	        <div class='form-group'>
+	          <label for='inputText'>Picture</label>
+	          <input class='form-control' id='picture' placeholder='Text field' type='text'>
+	        </div>
+	        <div class='form-group'>
+	          <label for='inputText'>Catergory</label>
+	          <div class='form-control' id='catergory'></div>
+	        </div>
+	        <div class='form-group'>
+	          <label for='inputTextArea'>Ingredients</label>
+	          <textarea class='form-control' id='ingredients' placeholder='Enter the ingredients for this item, comma seperated' rows='2'></textarea>
+	        </div>
+
+	        <div class='form-group'>
+	          <label for='inputTextArea'>Description</label>
+	          <textarea class='form-control' id='description' placeholder='Enter brief description of menu item' rows='3'></textarea>
+	        </div>
+
+	        <div class='form-actions'>
+	          <div class='row'>
+	            <div class='col-sm-7 col-sm-offset-5'>
+	              <button id="submit" type="submit" class="btn btn-primary btn-lg">Save</button>
+	            </div>
+	          </div>
+	        </div>
+	        </form>
+	
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</template>

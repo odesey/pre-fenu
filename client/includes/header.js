@@ -70,10 +70,16 @@ Template.header.events({
     var messageList = $('[data-submitted]');
     $(messageCount).text(0 + '/' + messageList.length);
     Session.set("lastReadTime", new Date().getTime());
-  },
+  }
+  // 'click .sb-toggle-left': function(e) {
+  //   // e.preventDefault();
+  //   console.log('toggle slide bars');
+  //   // $.slidebars();
+  // }
 });
 
 Template.header.rendered = function(){
+  $.slidebars();
   var timeRef = Session.get("lastReadTime");
   var messageList = $('[data-submitted]');
   var i = 0;

@@ -10,6 +10,11 @@
     
 //   }
 // });
+Template.menuRoot.helpers({
+  menuItems: function () {
+    return Items.find();
+  }
+});
 
 // Handlebars.registerHelper("guests", function() {
 //   if (Tables.findOne(Session.get("tableID")) !== undefined) {

@@ -8,4 +8,8 @@ Meteor.publish("staff", function () {
 
 Meteor.publish('messages', function() {
 	return Messages.find({}, {sort: {submitted: -1}});
-})
+});
+
+Meteor.publish('items', function() {
+  return Items.find();
+});
