@@ -13,3 +13,11 @@ Meteor.publish('messages', function() {
 Meteor.publish('items', function() {
   return Items.find();
 });
+
+Meteor.publish('orders', function() {
+  return Orders.find();
+});
+
+Meteor.publish('tabs', function() {
+  return Tabs.find();
+});

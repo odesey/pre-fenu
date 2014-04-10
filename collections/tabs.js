@@ -1,0 +1,1 @@
+Tabs = new Meteor.Collection('tabs');

@@ -4,8 +4,10 @@
   <div class="container">
 
   	{{> errors}}
-    <div id="main" class="row-fluid">
-
+    <div class="wrapper">
+    	<div class="sb-slidebar sb-left sb-style-overlay sb-width-thin">
+    		{{>sidebar}}<!-- Your left Slidebar content. -->
+    	</div>
       {{yield}}
     </div>
   </div>
