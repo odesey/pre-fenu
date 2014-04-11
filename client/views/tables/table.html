@@ -39,7 +39,7 @@
             <a class='dropdown-collapse messages' href='#'>
               <i class='icon-comments'></i>
               <span>Messages</span>
-              <span class="msgCount badge badge-warning pull-right">{{newMessages}}/{{messageCount}}</span>
+              <span class="msgCount badge badge-warning pull-right">{{messageCount}}</span>
               <i class='icon-angle-right angle-down '></i>
             </a>
             <ul class='nav nav-stacked' style="display: none">
@@ -59,7 +59,7 @@
                         </small>
                       </div>
                       <div class='time pull-right'>
-                        <small class='date pull-right text-muted'>
+                        <small class='msg date pull-right text-muted'>
                           {{submitted}}
                           <i class='icon-time'></i>
                         </small>
@@ -76,13 +76,62 @@
               </div>
             </ul>
           </li>
-          <li class="list-group-item">
-              <span class="badge badge-info">0</span>
+
+          <li class="order list-group-item">
+            <a class='dropdown-collapse messages' href='#'>
               <i class="icon-food"></i>
-              Orders
+              <span>Orders</span>
+              <span class="orderCount badge badge-info pull-right">{{orderCount}}</span>
+              <i class='icon-angle-right angle-down '></i>
+            </a>
+            <ul class='nav nav-stacked' style="display: none">
+              <div class='chat'>
+              <div class='scrollable' data-scrollable-height='300' data-scrollable-start='bottom'>
+                <ul class='list-unstyled list-hover list-striped'>
+                  {{#each tableOrders}}
+
+                  <li class='message'>
+                    <div class='avatar'>
+                      <i class='icon-user'></i>
+                    </div>
+                    <div class='name-and-time'>
+                      <div class='name pull-left'>
+                        <small>
+                          <a class="text-contrast" href="#">{{guest}}</a>
+                        </small>
+                      </div>
+                      <div class='time pull-right'>
+                        <small class='order date pull-right text-muted'>
+                          {{submitted}}
+                          <i class='icon-time'></i>
+                        </small>
+                      </div>
+                    </div>
+                    <div class='body'>
+                      {{itemName}}
+                      <div class='btn-group pull-right'>
+                        <button class='btn btn-success'>
+                          <i class='icon-thumbs-up-alt'></i>
+                        </button>
+                        <button class='btn btn-danger'>
+                          <i class='icon-thumbs-down-alt'></i>
+                        </button>
+                        <button class='btn btn-primary'>
+                          <i class='icon-pencil'></i>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+
+                  {{/each}}
+                </ul>
+              </div>
+              </div>
+            </ul>
           </li>
+
           <li class="list-group-item">
-              <span class="badge badge">$0</span>
+              <span class="badge badge">${{tableTab}}</span>
               <i class="icon-dollar"></i>
               Tab
           </li>

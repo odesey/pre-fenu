@@ -26,6 +26,19 @@ Template.menuRoot.helpers({
 
 Template.menuRoot.events({
   'click .order': function(e) {
+    e.preventDefault();
+    var order = {
+      table: Session.get("tableID"),
+      guest: Session.get("currentGuest"),
+      itemName: this.name,
+      itemPrice: this.price,
+      itemID: this._id
+    }
+    if (Session.get("currentGuest") && Session.get("tableID")) {
+      Meteor.call('orderItem', order, function(error, id) {
+
+      });
+    };
     console.log('order an item from the menu');
   }
 });

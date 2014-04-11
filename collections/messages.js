@@ -10,7 +10,7 @@ Meteor.methods({
     	user = "waiter";
     };
 
-    message = _.extend(_.pick(messageAttributes, 'messageText', 'tableID', 'guest'), {
+    var message = _.extend(_.pick(messageAttributes, 'messageText', 'tableID', 'guest'), {
       read: false,
       sentBy: user,
       submitted: new Date().getTime()

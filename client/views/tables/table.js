@@ -17,9 +17,26 @@ Template.table.helpers({
 	numberOfGuests: function () {
 		return this.guests.length;
 	},
-	myGuests: function () {
+	myGuests: function() {
 		return this.guests;
-	}
+	},
+	orderCount: function() {
+		return Orders.find({table: this._id}).count()
+	},
+  tableOrders: function() {
+    // var orders = Orders.find({table: this._id})
+    return Orders.find({table: this._id})
+  },
+  tableTab: function() {
+    var currentTab = Tabs.findOne({table: this._id});
+    if (currentTab !== undefined) {
+      // console.log(currentTab);
+      return currentTab.ballance.toPrecision(4);
+    } else {
+      return 0;
+    };
+    
+  }
 });
 
 Template.waiterRoot.events({
@@ -87,10 +104,42 @@ Template.waiterRoot.events({
 		e.preventDefault();
 		var currentTable = this._id;
 		Session.set("tableID", currentTable);
-	}
-	// 'click .msg list-group-item': function(e) {
-	// 	console.log('clicked a message link');
-	// }
+	},
+  'click .btn-group': function (e) {
+    e.preventDefault();
+    var orderChage = $(e.target).attr('class');
+    // console.log(orderChage);
+    if (orderChage == "btn btn-success" || orderChage == "icon-thumbs-up-alt") {
+      if (this.confirmed !== true) {
+        Orders.update(this._id, {$set: {confirmed: true}});
+        Meteor.call('updateTab', this, function (error, result) {});
+      };
+    } else if (orderChage == "btn btn-danger" || orderChage == "icon-thumbs-down-alt") {
+      console.log('remove the order from the table tab if its there');
+    } else if (orderChage == "btn btn-primary" || orderChage == "icon-pencil") {
+      console.log('add notes to the order via modal');
+    };
+    // console.log(this);
+    // switch (orderChage)
+    // {
+    // case "icon-thumbs-up-alt":
+    //   if (this.confirmed !== true) {
+    //     Orders.update(this._id, {$set: {confirmed: true}});
+    //     Meteor.call('updateTab', this, function (error, result) {});
+    //   };
+    //   break;
+    // case "icon-thumbs-down-alt":
+    //   console.log('remove the order from the table tab if its there');
+    //   break;
+    // case "icon-pencil":
+    //   console.log('add notes to the order via modal');
+    //   break;
+    // }
+    // if (this.confirmed !== true) {
+    //   Orders.update(this._id, {$set: {confirmed: true}});
+    //   Meteor.call('updateTab', this, function (error, result) {});
+    // };
+  }
 });
 
 Template.table.rendered = function(){
@@ -104,7 +153,7 @@ Template.table.rendered = function(){
   	var timeRef = this.data.lastReadTime;
   	// get a list of all the tables
   	// var tableList = $('.chat');
-  	var messageList = this.findAll("small.date");
+  	var messageList = this.findAll("small.msg");
   	var i = 0;
   	var messageCount = this.find("span.msgCount");
   	// console.log(messageList.length);
@@ -127,7 +176,8 @@ Template.table.rendered = function(){
 	  		// console.log(Date(timeRef));
 	  	});
 	  };
-	  $(messageCount).text(i + '/' + messageList.length);
+	  // $(messageCount).text(i + '/' + messageList.length);
+    $(messageCount).prepend(i + '/');
 	  // return i;
   	// for each message check its submitted time
   	// for each message thats newer than your last time read i++

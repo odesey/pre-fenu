@@ -9,7 +9,7 @@ Tables.allow({
 Meteor.methods({
   addTable: function(tableAttributes) {
 
-    table = _.extend(_.pick(tableAttributes, 'code', 'tableNumber', 'creator', 'guests'), {
+    var table = _.extend(_.pick(tableAttributes, 'code', 'tableNumber', 'creator', 'guests'), {
       lastReadTime: new Date().getTime()
     });
     table = Tables.insert(table);
@@ -19,11 +19,14 @@ Meteor.methods({
     var updatedTime = new Date().getTime();
     Tables.update(table._id, {$set: {lastReadTime: updatedTime}});
     // return table;
+  },
+  lastReadTime: function() {
+      return new Date().getTime();
   }
 });
 
-Meteor.methods({
-    lastReadTime: function() {
-        return new Date().getTime();
-    }
-});
+// Meteor.methods({
+//     lastReadTime: function() {
+//         return new Date().getTime();
+//     }
+// });
