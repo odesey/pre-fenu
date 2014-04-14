@@ -107,16 +107,25 @@ Template.waiterRoot.events({
 	},
   'click .btn-group': function (e) {
     e.preventDefault();
-    var orderChage = $(e.target).attr('class');
-    // console.log(orderChage);
-    if (orderChage == "btn btn-success" || orderChage == "icon-thumbs-up-alt") {
-      if (this.confirmed !== true) {
-        Orders.update(this._id, {$set: {confirmed: true}});
-        Meteor.call('updateTab', this, function (error, result) {});
+    var orderChange = $(e.target).attr('class');
+    // console.log(orderChange);
+    if (orderChange == "btn btn-success" || orderChange == "icon-thumbs-up-alt") {
+        // console.log(this);
+      if (this.confirmed == false) {
+        // need to move this to a method call
+        // Orders.update(this._id, {$set: {confirmed: true}});
+        Meteor.call('confirmOrder', this, function (error, result) {});
       };
-    } else if (orderChage == "btn btn-danger" || orderChage == "icon-thumbs-down-alt") {
-      console.log('remove the order from the table tab if its there');
-    } else if (orderChage == "btn btn-primary" || orderChage == "icon-pencil") {
+    } else if (orderChange == "btn btn-danger" || orderChange == "icon-thumbs-down-alt") {
+      // console.log(this);
+      if (this.confirmed == true) {
+        // need to move this to a method call
+        // Orders.remove(this._id);
+        // Orders.update(this._id, {$set: {confirmed: false}});
+        Meteor.call('voidOrder', this, function (error, result) {});
+        console.log('remove the order from the table tab if its there');
+      };
+    } else if (orderChange == "btn btn-primary" || orderChange == "icon-pencil") {
       console.log('add notes to the order via modal');
     };
     // console.log(this);
