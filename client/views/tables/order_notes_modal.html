@@ -1,0 +1,26 @@
+<template name="orderNotesForm">
+<div class='modal fade' id='orderNotesModal' tabindex='-1' >
+  <div class='modal-dialog modal-sm'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-hidden='true' class='close' data-dismiss='modal' type='button'>×</button>
+        <h4 class='modal-title' id='myModalLabel'>Order Notes</h4>
+      </div>
+      <div class='modal-body'>
+        <form id="addNotesForm" role="form" action="action" >
+        <div class='form-group'>
+          <label for='inputTextArea1'>Add notes to an order.</label>
+          <textarea class='form-control' id='notesText' placeholder='Existing notes for this order coming soon!' rows='3'></textarea>
+        </div>
+      <div class='modal-footer'>
+        <div class='text-center'>
+          <button class='btn btn-default' data-dismiss='modal' type='button'>Close</button>
+          <button id="addNotes" type="submit" class='btn btn-primary' >Add</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+</template>

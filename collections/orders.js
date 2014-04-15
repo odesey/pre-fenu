@@ -13,5 +13,8 @@ Meteor.methods({
       submitted: new Date().getTime()
     });
     order = Orders.insert(order);
+  },
+  addOrderNotes: function(order, noteText) {
+    Orders.update(order, {$set: {notes: noteText}});
   }
 });

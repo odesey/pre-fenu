@@ -27,13 +27,17 @@ Meteor.methods({
     var currentTab = Tabs.findOne({table: itemAttributes.table});
     if (currentTab.ballance >= itemAttributes.itemPrice) {
       var newTab = (currentTab.ballance - itemAttributes.itemPrice);
+      newTab.toPrecision(4);
+      // console.log(newTab);
       Tabs.update(currentTab._id, {$set: {ballance: newTab}});
       Orders.update(itemAttributes._id, {$set: {confirmed: false}});
     };
   }
 });
 
-
+/*
+This is how NOT to write a meteor method :-)
+*/
 // Meteor.methods({
 //   updateTab: function(itemAttributes, orderChange) {
 //     // console.log(orderChange);

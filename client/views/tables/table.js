@@ -24,28 +24,20 @@ Template.table.helpers({
 		return Orders.find({table: this._id}).count()
 	},
   tableOrders: function() {
-    // var orders = Orders.find({table: this._id})
     return Orders.find({table: this._id})
   },
   tableTab: function() {
     var currentTab = Tabs.findOne({table: this._id});
     if (currentTab !== undefined) {
-      // console.log(currentTab);
-      return currentTab.ballance.toPrecision(4);
+      return currentTab.ballance.toPrecision(3);
     } else {
-      return 0;
+      return "0.00";
     };
     
   }
 });
 
-Template.waiterRoot.events({
-	// 'click .box-collapse': function (e) {
-	  // var box = $(e.target).parents(".box").first();
-	  // box.toggleClass("box-collapsed");
-	  // e.preventDefault();
-	  // return false;
-	// },
+Template.table.events({
 	'click .box-remove': function (e) {
 		if (this.guests.length == 0) {
 			var currentTableID = this._id;
@@ -57,12 +49,10 @@ Template.waiterRoot.events({
 	  return false;
 	},
 	'click .dropdown-collapse': function (e) {
+    e.preventDefault();
 		var _this = this;
-		// console.log('clicked my nestable list');
 		if (e.target.textContent == "Messages") {
-			// Meteor.call('updateLastTimeRead', this);
 		};
-		// $("#main-nav .dropdown-collapse").on(click_event, function(e) {
 		  var link, list;
 		  var body = $("body");
 		  e.preventDefault();
@@ -75,7 +65,6 @@ Template.waiterRoot.events({
 		      link.removeClass("in");
 		      list.slideUp(300, function() {
 		        if (e.target.textContent == "Messages") {
-		        	// Meteor.call('updateLastTimeRead', this);
 		        	var updatedTime = new Date().getTime();
 		        	Tables.update(_this._id, {$set: {lastReadTime: updatedTime}});
 		        };
@@ -89,16 +78,11 @@ Template.waiterRoot.events({
 		    }
 		    link.addClass("in");
 		    list.stop().slideDown(300, function() {
-		    	// var updatedTime = new Date().getTime();
-		    	// Tables.update(this._id, {$set: {lastReadTime: updatedTime}});
 		      return $(e.target.parentElement).addClass("in");
-		      // Meteor.call('updateLastTimeRead', this);
 		    });
 
 		  }
-		  // Meteor.call('updateLastTimeRead', this);
 		  return false;
-		// });
 	},
 	'click .comment': function (e) {
 		e.preventDefault();
@@ -108,46 +92,30 @@ Template.waiterRoot.events({
   'click .btn-group': function (e) {
     e.preventDefault();
     var orderChange = $(e.target).attr('class');
-    // console.log(orderChange);
     if (orderChange == "btn btn-success" || orderChange == "icon-thumbs-up-alt") {
-        // console.log(this);
       if (this.confirmed == false) {
-        // need to move this to a method call
-        // Orders.update(this._id, {$set: {confirmed: true}});
         Meteor.call('confirmOrder', this, function (error, result) {});
       };
     } else if (orderChange == "btn btn-danger" || orderChange == "icon-thumbs-down-alt") {
-      // console.log(this);
       if (this.confirmed == true) {
-        // need to move this to a method call
-        // Orders.remove(this._id);
-        // Orders.update(this._id, {$set: {confirmed: false}});
         Meteor.call('voidOrder', this, function (error, result) {});
-        console.log('remove the order from the table tab if its there');
       };
     } else if (orderChange == "btn btn-primary" || orderChange == "icon-pencil") {
-      console.log('add notes to the order via modal');
+      $('#orderNotesModal').modal('toggle');
+      $(".modal-backdrop").css("position", "static");
+      Session.set("currentNote", this._id);
     };
-    // console.log(this);
-    // switch (orderChage)
-    // {
-    // case "icon-thumbs-up-alt":
-    //   if (this.confirmed !== true) {
-    //     Orders.update(this._id, {$set: {confirmed: true}});
-    //     Meteor.call('updateTab', this, function (error, result) {});
-    //   };
-    //   break;
-    // case "icon-thumbs-down-alt":
-    //   console.log('remove the order from the table tab if its there');
-    //   break;
-    // case "icon-pencil":
-    //   console.log('add notes to the order via modal');
-    //   break;
-    // }
-    // if (this.confirmed !== true) {
-    //   Orders.update(this._id, {$set: {confirmed: true}});
-    //   Meteor.call('updateTab', this, function (error, result) {});
-    // };
+  },
+  'submit #addNotesForm': function(e) {
+    e.preventDefault();
+    var $note = $("#notesText");
+    if ($note.val().trim() !== "") {
+      var noteText = $note.val().trim()
+      Meteor.call('addOrderNotes', Session.get("currentNote"), noteText, function (error, result) {});
+      Session.set("currentNote", undefined);
+      $note.val('');
+      $('#orderNotesModal').modal('toggle');  
+    };
   }
 });
 
@@ -187,13 +155,5 @@ Template.table.rendered = function(){
 	  };
 	  // $(messageCount).text(i + '/' + messageList.length);
     $(messageCount).prepend(i + '/');
-	  // return i;
-  	// for each message check its submitted time
-  	// for each message thats newer than your last time read i++
-  	// stop checking messages if its submitted time is less than your last time read
-  	// return i
-
-  	// return 6;
-  
 
 };
