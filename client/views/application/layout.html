@@ -1,14 +1,24 @@
 <template name="layout">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	{{> header}}
-  <div class="container">
+  <div id='wrapper'>
 
   	{{> errors}}
-    <div class="wrapper">
-    	<div class="sb-slidebar sb-left sb-style-overlay sb-width-thin">
-    		{{>sidebar}}<!-- Your left Slidebar content. -->
-    	</div>
-      {{yield}}
-    </div>
+    <section id='content'>
+    	<div class='container'>
+    		<div class='row' id='content-wrapper'>
+    			<div class='col-xs-12'>
+    				<!-- <div class='row'> -->
+              <!-- <div class='col-sm-12'> -->
+    	    		<div class="sb-slidebar sb-left sb-style-overlay sb-width-thin">
+    	    		 {{>sidebar}}<!-- Your left Slidebar content. -->
+    	    	  </div>
+	           {{yield}}
+             <!-- </div> -->
+	           <!-- </div> -->
+	       </div>
+	      </div>
+      </div>
+    </section>
   </div>
 </template>

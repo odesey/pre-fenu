@@ -1,0 +1,184 @@
+<template name="paymentSummary">
+	      
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='page-header'>
+      <h1 class='pull-left'>
+        <i class='icon-dollar'></i>
+        <span>Payments</span>
+      </h1>
+
+    </div>
+  </div>
+</div>
+<!-- 
+<div class='row box box-transparent'>
+  <div class='col-xs-4 col-sm-2 col-md-offset-5 col-xs-offset-4'>
+    <div class='box-quick-link blue-background'>
+      <a href='#'>
+        <div class='header'>
+          <div class='icon-user'></div>
+        </div>
+        <div class='content'>Jin</div>
+        <div class='content text-error'>$65.80</div>
+      </a>
+    </div>
+  </div>
+</div> -->
+
+<div class="row">
+	<div class='col-sm-3 col-xs-6 col-xs-offset-3 col-sm-offset-4'>
+	  <div class='box-content box-statistic text-right red-background'>
+	    <small class='text-error'>3 Guests</small>
+	    <h3 class='title text-error'>${{tableBallance.ballance}}</h3>
+	    <div class='text-error icon-group align-left'></div>
+	  </div>
+	</div>
+</div>
+<hr>
+<div class="row">
+	{{#each guestBallance}}
+	<div class="col-sm-2 col-md-1 col-xs-4">
+		<a class="quick-button-small ">
+			<h3>{{this.[0]}}</h3>
+			<p>{{this.[1]}}</p>
+			<span class="icon-user notification red"></span>
+		</a>
+			<!-- <button type="button" class="btn btn-danger">Pay</button> -->
+	</div><!--/col-->
+	{{/ each}}
+
+<hr>
+
+<div class='group-header'>
+  <div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+      <div class='text-center'>
+        <h2>Statistics</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-sm-6'>
+    <div class='box'>
+      <div class='box-header'>
+        <div class='title'>
+          <div class='icon-inbox'></div>
+          Orders
+        </div>
+        <div class='actions'>
+          <a class="btn box-remove btn-xs btn-link" href="#"><i class='icon-remove'></i>
+          </a>
+          
+          <a class="btn box-collapse btn-xs btn-link" href="#"><i></i>
+          </a>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-6'>
+          <div class='box-content box-statistic'>
+            <h3 class='title text-error'>191</h3>
+            <small>New</small>
+            <div class='text-error icon-inbox align-right'></div>
+          </div>
+          <div class='box-content box-statistic'>
+            <h3 class='title text-warning'>311</h3>
+            <small>In process</small>
+            <div class='text-warning icon-check align-right'></div>
+          </div>
+          <div class='box-content box-statistic'>
+            <h3 class='title text-info'>3</h3>
+            <small>Pending</small>
+            <div class='text-info icon-time align-right'></div>
+          </div>
+        </div>
+        <div class='col-sm-6'>
+          <div class='box-content box-statistic red-background'>
+            <h3 class='title text-primary'>3</h3>
+            <small>Shipped</small>
+            <div class='text-primary icon-truck align-right'></div>
+          </div>
+          <div class='box-content box-statistic green-background'>
+            <h3 class='title text-success'>981</h3>
+            <small>Completed</small>
+            <div class='text-success icon-flag align-right'></div>
+          </div>
+          <div class='box-content box-statistic muted-background'>
+            <h3 class='title text-muted'>0</h3>
+            <small>Canceled</small>
+            <div class='text-muted icon-remove align-right'></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-sm-3'>
+    <div class='box'>
+      <div class='box-header'>
+        <div class='title'>
+          <i class='icon-group'></i>
+          Visitors
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <div class='box-content box-statistic text-right'>
+            <h3 class='title text-error'>9100</h3>
+            <small>Unique</small>
+            <div class='text-error icon-user align-left'></div>
+          </div>
+          <div class='box-content box-statistic text-right'>
+            <h3 class='title text-warning'>41 000</h3>
+            <small>Pageviews</small>
+            <div class='text-warning icon-book align-left'></div>
+          </div>
+          <div class='box-content box-statistic text-right'>
+            <h3 class='title text-primary'>12:21</h3>
+            <small>Average time</small>
+            <div class='text-primary icon-time align-left'></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-sm-3'>
+    <div class='box'>
+      <div class='box-header'>
+        <div class='title'>
+          <i class='icon-comments'></i>
+          Comments
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-sm-12'>
+          <div class='box-content box-statistic'>
+            <h3 class='title text-error'>91</h3>
+            <small>New</small>
+            <div class='text-error icon-plus align-right'></div>
+          </div>
+          <div class='box-content box-statistic'>
+            <h3 class='title text-success'>1</h3>
+            <small>Approved</small>
+            <div class='text-success icon-ok align-right'></div>
+          </div>
+          <div class='box-content box-statistic'>
+            <h3 class='title text-info'>123</h3>
+            <small>Pending</small>
+            <div class='text-info icon-time align-right'></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+	      
+	    
+	    <!-- footer start -->
+
+	    <!-- footer end -->
+	  
+	
+
+</template>

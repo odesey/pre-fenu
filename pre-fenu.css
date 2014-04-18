@@ -8,6 +8,184 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
 @import url(http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
 
+/***********************/
+/* payments page start */
+/***********************/
+.quick-button {
+    border: 1px solid #ddd;
+    margin-bottom: -1px;
+    padding: 30px 0 10px 0;
+    font-size: 14px;
+    background: #efefef;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#efefef));
+    background: -webkit-linear-gradient(top, #fafafa, #efefef);
+    background: -moz-linear-gradient(top, #fafafa, #efefef);
+    background: -o-linear-gradient(top, #fafafa, #efefef);
+    background: -ms-linear-gradient(top, #fafafa, #efefef);
+    background: linear-gradient(top, #fafafa, #efefef);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    display: block;
+    color: #646464;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.quick-button:hover {
+    text-decoration: none;
+    border-color: #a5a5a5;
+    color: #444;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+}
+.quick-button:hover .notification {
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+.quick-button i {
+    font-size: 32px;
+}
+.quick-button-small {
+    border: 1px solid #ddd;
+    padding: 15px 0 0 0;
+    font-size: 10px;
+    background: #efefef;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#efefef));
+    background: -webkit-linear-gradient(top, #fafafa, #efefef);
+    background: -moz-linear-gradient(top, #fafafa, #efefef);
+    background: -o-linear-gradient(top, #fafafa, #efefef);
+    background: -ms-linear-gradient(top, #fafafa, #efefef);
+    background: linear-gradient(top, #fafafa, #efefef);
+    -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    display: block;
+    color: #646464;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.quick-button-small:hover {
+    text-decoration: none;
+    border-color: #a5a5a5;
+    color: #444;
+    text-shadow: 0 1px 0 #fff;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+}
+.quick-button-small:hover .notification {
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.6);
+}
+.quick-button-small i {
+    font-size: 20px;
+}
+
+.notification {
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    line-height: 16px;
+    height: 30px;
+    padding: 6px 8px;
+    color: white!important;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    -webkit-border-radius: 50em;
+    -moz-border-radius: 50em;
+    border-radius: 50em;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08), inset 0 1px rgba(255, 255, 255, 0.3);
+}
+.notification {
+    border-color: #2fabe9;
+    background-color: #67c2ef;
+    background: #67c2ef;
+    background: -webkit-gradient(linear, left top, left bottom, from(#acddf6), to(#67c2ef));
+    background: -webkit-linear-gradient(top, #acddf6, #67c2ef);
+    background: -moz-linear-gradient(top, #acddf6, #67c2ef);
+    background: -o-linear-gradient(top, #acddf6, #67c2ef);
+    background: -ms-linear-gradient(top, #acddf6, #67c2ef);
+    background: linear-gradient(top, #acddf6, #67c2ef);
+}
+.notification.green {
+    border-color: #5aad34;
+    background-color: #78cd51;
+    background: #78cd51;
+    background: -webkit-gradient(linear, left top, left bottom, from(#a6dd8d), to(#78cd51));
+    background: -webkit-linear-gradient(top, #a6dd8d, #78cd51);
+    background: -moz-linear-gradient(top, #a6dd8d, #78cd51);
+    background: -o-linear-gradient(top, #a6dd8d, #78cd51);
+    background: -ms-linear-gradient(top, #a6dd8d, #78cd51);
+    background: linear-gradient(top, #a6dd8d, #78cd51);
+}
+.notification.yellow {
+    border-color: #f4a506;
+    background-color: #fabb3d;
+    background: #fabb3d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fcd588), to(#fabb3d));
+    background: -webkit-linear-gradient(top, #fcd588, #fabb3d);
+    background: -moz-linear-gradient(top, #fcd588, #fabb3d);
+    background: -o-linear-gradient(top, #fcd588, #fabb3d);
+    background: -ms-linear-gradient(top, #fcd588, #fabb3d);
+    background: linear-gradient(top, #fcd588, #fabb3d);
+}
+.notification.red {
+    border-color: #fa5833;
+    background-color: #fa603d;
+    background: #fa603d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fc9d88), to(#fa603d));
+    background: -webkit-linear-gradient(top, #fc9d88, #fa603d);
+    background: -moz-linear-gradient(top, #fc9d88, #fa603d);
+    background: -o-linear-gradient(top, #fc9d88, #fa603d);
+    background: -ms-linear-gradient(top, #fc9d88, #fa603d);
+    background: linear-gradient(top, #fc9d88, #fa603d);
+}
+
+
+
+/***********************/
+/* payments page start */
+/***********************/
+
+
 h1,h2,h3,h4,h5,h6{
   font-family: 'Droid Serif', serif;
   font-weight: 400;

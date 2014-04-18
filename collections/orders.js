@@ -16,5 +16,11 @@ Meteor.methods({
   },
   addOrderNotes: function(order, noteText) {
     Orders.update(order, {$set: {notes: noteText}});
+  },
+  guestBallance: function(table, guest) {
+    // var total = 0;
+    // Orders.find({table: table, guest: guest, confirmed: true}).map(function(doc) { total += doc.itemPrice; });
+    // // console.log(total)
+    // return total;
   }
 });
