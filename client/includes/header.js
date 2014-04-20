@@ -23,7 +23,7 @@ Template.header.helpers({
       var myWaiter = Meteor.users.findOne({_id: tableCreator});
       return myWaiter.profile;
     } else {
-      console.log('myWaiter helper error!');
+      // console.log('myWaiter helper error!');
     };
   }
 });
