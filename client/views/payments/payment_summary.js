@@ -47,7 +47,9 @@ Template.paymentSummary.helpers({
     var eqBallance = Tabs.findOne({table: Session.get("tableID")});
     var myArray = Orders.find({table: Session.get("tableID"), confirmed: true}).fetch()
     var distinctArray = _.uniq(myArray, false, function(d) {return d.guest}).length;
-    return (eqBallance.ballance/distinctArray).toFixed(2);
+    if (!!eqBallance) {
+      return (eqBallance.ballance/distinctArray).toFixed(2);
+    };
   },
   ballanceCheck: function (){
     return !!(Session.get('tabDivision'));
@@ -55,11 +57,12 @@ Template.paymentSummary.helpers({
 });
 
 Template.paymentSummary.events({
-  'click #sorts': function (e) {
+  'click .stdSort': function (e) {
     e.preventDefault();
     var splitButton = $('.button-group').find('.active');
     var payBox = $(".payBox");
     var equalTab = $(e.target).text() == "Equally" ? true : false;
+    var sortValue = $(e.target).attr('data-sort-value');
     Session.set('tabDivision', equalTab);
 
     var $container = $('.isotope').isotope({
@@ -67,36 +70,78 @@ Template.paymentSummary.events({
       layoutMode: 'fitRows',
       getSortData: {
         name: '.name',
-        number: '[data-iTab]',
-        category: '[data-category]',
-        weight: function( itemElem ) {
-          var weight = $( itemElem ).find('.weight').text();
-          return parseFloat( weight.replace( /[\(\)]/g, '') );
-        }
+        number: '[data-iTab]'
       }
     })
-    // console.log(equalTab);
+    // console.log(e.target);
     // var payBox = $(".payBox");
     if (equalTab) {
-      // console.log("set individual amount to evenly ballanced");
       payBox.each(function(index, el) {
         var groupTotal = parseFloat($('.tableTotal').find(".total").text().substr(1));
         $(el).find('.number').text('$'+(groupTotal/payBox.length).toFixed(2));
       })
     } else if (equalTab == false) {
-      // console.log("set individual amount");
       payBox.each(function(index, el) {
-        // console.log(el);
         $(el).find('.number').text('$'+$(el).attr('data-itab'));
       })
     };
+
     // console.log('isotope sort by order amounts');
-    var sortValue = $(e.target).attr('data-sort-value');
     // console.log(sortValue);
     $('.button-group').find('.active').removeClass('active')
     $(e.target).addClass('active');
 
     $container.isotope({ sortBy: sortValue });
+  },
+  'click .customSort': function (e) {
+    $('#customBillModal').modal('toggle');
+    $(".modal-backdrop").css("position", "static");
+    $('.button-group').find('.active').removeClass('active')
+    $(e.target).addClass('active');
+  },
+  'keyup input': function(e) {
+    // console.log($(e.target).val());
+    var groupTotal = parseFloat($('.tableTotal').find(".total").text().substr(1));
+    var dynamicTotal = 0;
+    var inputs = $(".customInput");
+    inputs.each(function(index, el) {
+      dynamicTotal += Number($(el).val());
+    })
+    $(".modalTotal").text("$"+(groupTotal - dynamicTotal));
+    if ((groupTotal - dynamicTotal) <= 0) {
+      $(".tableTotalModal").removeClass('red-background').addClass('green-background');
+      $("#customTabForm").find(":submit").removeClass("disabled");
+    } else {
+      $(".tableTotalModal").removeClass('green-background').addClass('red-background');
+      $("#customTabForm").find(":submit").addClass("disabled");
+    };
+  },
+  'submit #customTabForm': function(e) {
+    e.preventDefault();
+    var quickButtons = $(".quick-button-small");
+    var modalData = $("#customTabForm").find(".form-group");
+    // var sortValue = $(e.target).attr('data-sort-value');
+    for(var i=0;i<quickButtons.length;i++) {
+        // console.log('swap form data to isotope data');
+        $(quickButtons[i]).find(".name").text($(modalData[i]).find(".control-label").text());
+        $(quickButtons[i]).find(".number").text(Number($(modalData[i]).find(":input").val()));
+      }
+      $('#customBillModal').modal('toggle');
+      var $container = $('.isotope').isotope({
+        itemSelector: '.payBox',
+        layoutMode: 'fitRows',
+        getSortData: {
+          number: '.number'
+        }
+      });
+      // console.log(sortValue);
+      $container.isotope({ sortBy: 'number' });
+      $container.isotope('updateSortData').isotope();
+  },
+  'click .tableTotal': function(e) {
+    $( "#ordersTable" ).slideToggle( "slow", function() {
+      // Animation complete.
+    });
   }
 });
 

@@ -1,0 +1,60 @@
+<template name="test">
+  <div id="ordersTable" class='responsive-table' >
+    <div class='scrollable-area'>
+      <table class='table table-hover table-striped' style='margin-bottom:0;'>
+        <thead>
+          <tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Price
+            </th>
+            <th>
+              Split
+            </th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each tableOrders}}
+          <tr class="orders" data-orderID="{{this._id}}">
+            <td>{{itemName}}</td>
+            <td>{{itemPrice}}</td>
+            <td class="splitTotal">0</td>
+          </tr>
+            {{#each guestBallance}}
+            <tr class="guests" style="display:none">
+              <td class="text-center"><input class="checkbox pull-right" type="checkbox">{{this.[0]}}</td>
+            </tr>
+            {{/ each}}
+          {{/ each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class='col-sm-3 col-xs-6 col-xs-offset-3 col-sm-offset-4'>
+      <div class='tableTotal box-content box-statistic text-right red-background'>
+        <small class='numberOfGuests text-error'>{{guestBallance.length}} Guests</small>
+        <h3 class='total title text-error'>${{tableBallance.ballance}}</h3>
+        <div class='text-error icon-group align-left'></div>
+      </div>
+    </div>
+  </div>
+<hr>
+  <div class='row'>
+    <div class="isotope">
+      {{#each guestBallance}}
+      <div class="payBox col-sm-2 col-md-1 col-xs-4" data-iTab="{{this.[1]}}" data-category="transition">
+        <a class="quick-button-small ">
+          <h3 class="name">{{this.[0]}}</h3>
+          <h5 class="number">$0</h5>
+          <span class="icon-user notification red"></span>
+        </a>
+      </div>
+      {{/ each}}
+    </div>
+  </div>
+</template>

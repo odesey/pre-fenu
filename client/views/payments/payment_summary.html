@@ -12,7 +12,6 @@
   </div>
 </div>
 
-
 <div class="row">
 	<div class='col-sm-3 col-xs-6 col-xs-offset-3 col-sm-offset-4'>
 	  <div class='tableTotal box-content box-statistic text-right red-background'>
@@ -22,8 +21,14 @@
 	  </div>
 	</div>
 </div>
-<hr>
 
+<div class="row">
+  <div class='col-sm-12 '>
+	{{>ordersList}}
+  </div>
+</div>
+
+<hr>
 
 <div class='row'>
   <div class='col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-2'>
@@ -31,13 +36,15 @@
   	  <h2>Split Bill:</h2>
   	</div>
   	<div id="sorts" class="button-group">
-  	  <button class="btn active" data-sort-value="name">Equally</button>
-  	  <button class="btn" data-sort-value="number">By Orders</button>
-  	  <button class="btn" data-sort-value="custom">Custom</button>
+  	  <button class="stdSort btn active" data-sort-value="name">Equally</button>
+  	  <button class="stdSort btn" data-sort-value="number">By Orders</button>
+  	  <button class="customSort btn" data-sort-value="custom" >Custom</button>
   	</div>
   </div>
 </div>
+
 <hr>
+
 <div class='row'>
 	<div class="isotope">
 		{{#each guestBallance}}
@@ -51,5 +58,76 @@
 	  {{/ each}}
 	</div>
 </div>
+
+
+<div class='modal fade' id='customBillModal' tabindex='-1'>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <button aria-hidden='true' class='close' data-dismiss='modal' type='button'>×</button>
+        <h4 class='modal-title text-center' id='myModalLabel'>Custom Payment</h4>
+      </div>
+
+      <div class="row">
+      	<div class='col-sm-3 col-xs-6 col-xs-offset-3 col-sm-offset-4'>
+      	  <div class='tableTotalModal box-content box-statistic text-right red-background'>
+      	    <small class='numberOfGuests text-error'>{{guestBallance.length}} Guests</small>
+      	    <h3 class='modalTotal title text-error'>${{tableBallance.ballance}}</h3>
+      	    <div class='text-error icon-group align-left'></div>
+      	  </div>
+      	</div>
+      </div>
+
+      <div class='modal-body'>
+
+      	<div class='tabbable'>
+      	  <ul class='nav nav-tabs nav-tabs-centered'>
+      	    <li class='active'>
+      	      <a data-toggle='tab' href='#basic'>
+      	        <i class='icon-indent-left'></i>
+      	        Basic
+      	      </a>
+      	    </li>
+      	    <li>
+      	      <a data-toggle='tab' href='#advanced'>
+      	        <i class='icon-edit text-red'></i>
+      	        Advanced
+      	      </a>
+      	    </li>
+      	  </ul>
+      	  <div class='tab-content'>
+      	    <div class='tab-pane active' id='basic'>
+	          <form id="customTabForm" class="form-horizontal">
+	            <fieldset>
+	        	{{#each guestBallance}}
+	        	<!-- Text input-->
+	        	<div class="form-group">
+	        	  <label class="col-md-4 col-xs-4 control-label" for="textinput">{{this.[0]}}</label>  
+	        	  <div class="col-md-4 col-xs-8">
+	        	  	<div class='input-group'>
+	        	  		<span class='input-group-addon'>$</span>
+	  	      	  <input name="textinput" type="number" placeholder="Enter Amount" class="customInput form-control input-md">
+	  	      	</div>
+	        	  </div>
+	        	</div>
+	        	{{/ each}}
+	        	<div class='modal-footer'>
+	        	  <button class='btn btn-default' data-dismiss='modal' type='button'>Cancel</button>
+	        	  <button class='btn btn-primary disabled' type='submit'>Ok</button>
+	        	</div>
+	            </fieldset>
+	          </form>
+      	    </div>
+      	    <div class='tab-pane' id='advanced'>
+      	      {{>ordersList}}
+      	    </div>
+      	  </div>
+      	</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 </template>
 
