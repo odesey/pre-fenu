@@ -84,15 +84,11 @@
       	  <ul class='nav nav-tabs nav-tabs-centered'>
       	    <li class='active'>
       	      <a data-toggle='tab' href='#basic'>
-      	        <i class='icon-indent-left'></i>
-      	        Basic
-      	      </a>
+      	        <i class='icon-indent-left'></i>Basic</a>
       	    </li>
       	    <li>
       	      <a data-toggle='tab' href='#advanced'>
-      	        <i class='icon-edit text-red'></i>
-      	        Advanced
-      	      </a>
+      	        <i class='icon-edit text-red'></i>Advanced</a>
       	    </li>
       	  </ul>
       	  <div class='tab-content'>
@@ -100,7 +96,6 @@
 	          <form id="customTabForm" class="form-horizontal">
 	            <fieldset>
 	        	{{#each guestBallance}}
-	        	<!-- Text input-->
 	        	<div class="form-group">
 	        	  <label class="col-md-4 col-xs-4 control-label" for="textinput">{{this.[0]}}</label>  
 	        	  <div class="col-md-4 col-xs-8">
@@ -113,13 +108,50 @@
 	        	{{/ each}}
 	        	<div class='modal-footer'>
 	        	  <button class='btn btn-default' data-dismiss='modal' type='button'>Cancel</button>
-	        	  <button class='btn btn-primary disabled' type='submit'>Ok</button>
+	        	  <button id="basicSubmit" class='btn btn-primary disabled' type='submit'>Ok</button>
 	        	</div>
 	            </fieldset>
 	          </form>
       	    </div>
       	    <div class='tab-pane' id='advanced'>
-      	      {{>ordersList}}
+      	        <div id="ordersTable" class='responsive-table' >
+                  <div class='scrollable-area'>
+                    <table class='table table-hover table-striped' style='margin-bottom:0;'>
+                      <thead>
+                        <tr>
+                          <th>
+                            Name
+                          </th>
+                          <th>
+                            Price
+                          </th>
+                          <th>
+                            Split
+                          </th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each tableOrders}}
+                        <tr class="orders" data-orderID="{{this._id}}">
+                          <td>{{itemName}}</td>
+                          <td>{{itemPrice}}</td>
+                          <td class="splitTotal">0</td>
+                        </tr>
+                          {{#each guestBallance}}
+                          <tr class="guests" style="display:none">
+                            <td class="text-center"><input class="checkbox pull-right" type="checkbox">{{this.[0]}}</td>
+                          </tr>
+                          {{/ each}}
+                        {{/ each}}
+                      </tbody>
+                    </table>
+                    <div class='modal-footer'>
+                      <button class='btn btn-default' data-dismiss='modal' type='button'>Cancel</button>
+                      <button id="advSubmit" class='btn btn-primary disabled' type='submit'>Ok</button>
+                    </div>
+                  </div>
+                </div>
       	    </div>
       	  </div>
       	</div>

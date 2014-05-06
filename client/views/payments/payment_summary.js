@@ -53,6 +53,10 @@ Template.paymentSummary.helpers({
   },
   ballanceCheck: function (){
     return !!(Session.get('tabDivision'));
+  },
+  tableOrders: function () {
+    var table = Session.get('tableID');
+    return Orders.find({table: table, confirmed: true});
   }
 });
 
@@ -94,6 +98,19 @@ Template.paymentSummary.events({
     $container.isotope({ sortBy: sortValue });
   },
   'click .customSort': function (e) {
+    var guests = $(".quick-button-small");
+    var checkBoxes = $(".checkbox");
+    var checked = 0;
+    checkBoxes.each(function(index, el) {
+      if (el.checked) {
+        checked++;
+      };
+    })
+    if (!checked) {
+      guests.each(function(index, el) {
+        $(el).children().eq(1).text("$0");
+      });
+    };
     $('#customBillModal').modal('toggle');
     $(".modal-backdrop").css("position", "static");
     $('.button-group').find('.active').removeClass('active')
@@ -110,39 +127,146 @@ Template.paymentSummary.events({
     $(".modalTotal").text("$"+(groupTotal - dynamicTotal));
     if ((groupTotal - dynamicTotal) <= 0) {
       $(".tableTotalModal").removeClass('red-background').addClass('green-background');
-      $("#customTabForm").find(":submit").removeClass("disabled");
+      $("#basicSubmit").removeClass("disabled");
     } else {
       $(".tableTotalModal").removeClass('green-background').addClass('red-background');
-      $("#customTabForm").find(":submit").addClass("disabled");
+      $("#basicSubmit").addClass("disabled");
     };
   },
   'submit #customTabForm': function(e) {
     e.preventDefault();
     var quickButtons = $(".quick-button-small");
     var modalData = $("#customTabForm").find(".form-group");
+    var activeTab = $("ul.nav-tabs li.active").children().text().trim();
     // var sortValue = $(e.target).attr('data-sort-value');
-    for(var i=0;i<quickButtons.length;i++) {
-        // console.log('swap form data to isotope data');
-        $(quickButtons[i]).find(".name").text($(modalData[i]).find(".control-label").text());
-        $(quickButtons[i]).find(".number").text(Number($(modalData[i]).find(":input").val()));
-      }
-      $('#customBillModal').modal('toggle');
-      var $container = $('.isotope').isotope({
-        itemSelector: '.payBox',
-        layoutMode: 'fitRows',
-        getSortData: {
-          number: '.number'
+    if (activeTab == "Basic") {
+      for(var i=0;i<quickButtons.length;i++) {
+          // console.log('swap form data to isotope data');
+          $(quickButtons[i]).find(".name").text($(modalData[i]).find(".control-label").text());
+          $(quickButtons[i]).find(".number").text(Number($(modalData[i]).find(":input").val()));
         }
-      });
-      // console.log(sortValue);
-      $container.isotope({ sortBy: 'number' });
-      $container.isotope('updateSortData').isotope();
+        $('#customBillModal').modal('toggle');
+        var $container = $('.isotope').isotope({
+          itemSelector: '.payBox',
+          layoutMode: 'fitRows',
+          getSortData: {
+            number: '.number'
+          }
+        });
+        // console.log(sortValue);
+        $container.isotope({ sortBy: 'number' });
+        $container.isotope('updateSortData').isotope();
+    } else {
+      $('#customBillModal').modal('toggle');
+    };
+
   },
   'click .tableTotal': function(e) {
     $( "#ordersTable" ).slideToggle( "slow", function() {
       // Animation complete.
     });
-  }
+  },
+  'click #advSubmit': function (e) {
+    e.preventDefault()
+    var checkBoxes = $(".checkbox");
+    $('#customBillModal').modal('toggle');
+    var $container = $('.isotope').isotope({
+      itemSelector: '.payBox',
+      layoutMode: 'fitRows',
+      getSortData: {
+        number: '.number'
+      }
+    });
+    $container.isotope({ sortBy: 'number' });
+    $container.isotope('updateSortData').isotope();
+    checkBoxes.each(function(index, el) {
+      $(el).removeAttr('checked');
+    })
+    },
+  'click .orders': function (e) {
+    e.preventDefault()
+    $(e.target).parent('tr').nextUntil('.orders').slideToggle(100);
+    },
+  'change input[type=checkbox].checkbox': function (e) {
+      var currentTR = $(e.target).parents().eq(1).prevAll("tr.orders:first");
+      var checkedTotal = $(currentTR).nextUntil('.orders').find(".checkbox");
+      var splitTotal = 0;
+      var mainTotal = Number($(".modalTotal").text().substring(1));
+      var checked = !!e.target.checked;
+      var guests = $(".quick-button-small");
+      var checkBoxes = $(event.target).parents().eq(1).prevAll("tr.orders:first").nextUntil('.orders').find(".checkbox");
+      var guestName = $(e.target).parent().text();
+      var clickGuestPriorTotal = $(".quick-button-small").find('.name:contains('+guestName+')').next().text().substring(1);
+      var itemPrice = Number($(e.target).parents().eq(1).prevAll("tr.orders:first").children().eq(1).text()).toFixed(2);
+
+
+      checkedTotal.each(function(index, el) {
+        if (el.checked) {
+          return splitTotal++;
+        };
+      })
+      // update main tab ref box
+      if (checked && (splitTotal == 1)) {
+        mainTotal = (mainTotal - Number($(currentTR).children().eq("1").text()));
+      } else if (!checked && (splitTotal == 0)) {
+        mainTotal = (mainTotal + Number($(currentTR).children().eq("1").text()));
+      };
+
+      if (mainTotal <= 0) {
+        $(".tableTotalModal").removeClass('red-background').addClass('green-background');
+        $("#advSubmit").removeClass("disabled");
+      } else {
+        $(".tableTotalModal").removeClass('green-background').addClass('red-background');
+        $("#advSubmit").addClass("disabled");
+      };
+
+      if (checked) {
+
+          checkBoxes.each(function(index, el) {
+            if (el.checked) {
+              var guestName = $(el).parent().text();
+              var existingTotal = Number($(".quick-button-small").find('.name:contains('+guestName+')').next().text().substring(1));
+              var adjustPercent = (itemPrice/splitTotal)/itemPrice*100;
+              var adjustmentNumber = (itemPrice - ((adjustPercent / 100) * itemPrice));
+              
+              if ($(el).parent().text() == $(event.target).parent().text()) {
+                $(".quick-button-small").find('.name:contains('+guestName+')').next().text("$"+(existingTotal + (itemPrice/splitTotal)).toFixed(2));
+              } else {
+                if (Number(clickGuestPriorTotal) !== 0) {
+                  $(".quick-button-small").find('.name:contains('+guestName+')').next().text("$"+((existingTotal - (itemPrice/(splitTotal-1))) + (itemPrice/splitTotal)).toFixed(2));
+                } else {
+                  $(".quick-button-small").find('.name:contains('+guestName+')').next().text("$"+(existingTotal * (1 - (itemPrice/splitTotal)/itemPrice)).toFixed(2));
+                };
+              };
+
+            };
+          })
+        } else {
+          var existingTotal = Number($(".quick-button-small").find('.name:contains('+guestName+')').next().text().substring(1));
+          if (splitTotal == 0) {
+            // var existingTotal = Number($(".quick-button-small").find('.name:contains('+guestName+')').next().text().substring(1));
+            $(".quick-button-small").find('.name:contains('+guestName+')').next().text("$"+(existingTotal - Number(itemPrice)).toFixed(2));
+          } else {
+            // var existingTotal = Number($(".quick-button-small").find('.name:contains('+guestName+')').next().text().substring(1));
+            $(".quick-button-small").find('.name:contains('+guestName+')').next().text("$"+(existingTotal - Number(itemPrice / (splitTotal+1))).toFixed(2));
+            // then we increase the price for the folks still sharing the order
+            checkBoxes.each(function(index, el) {
+              if (el.checked && ($(el).parent().text() !== $(event.target).parent().text())) {
+                var guestName = $(el).parent().text();
+                var existingTotal = Number($(".quick-button-small").find('.name:contains('+guestName+')').next().text().substring(1));
+                var adjustPercent = (itemPrice/splitTotal)/itemPrice*100;
+                var adjustmentNumber = (itemPrice - ((adjustPercent / 100) * itemPrice));
+
+                $(".quick-button-small").find('.name:contains('+guestName+')').next().text("$"+(existingTotal + (itemPrice/(splitTotal+1)/splitTotal)).toFixed(2));
+              };
+            })
+          }
+      };
+
+      $(currentTR).children().eq("2").text(splitTotal);
+      $(".modalTotal").text("$"+mainTotal.toFixed(2));
+
+    }
 });
 
 

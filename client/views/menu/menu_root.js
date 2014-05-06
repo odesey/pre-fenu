@@ -40,5 +40,35 @@ Template.menuRoot.events({
       });
     };
     console.log('order an item from the menu');
+  },
+  'click .img-responsive': function(e) {
+    e.preventDefault();
+    var nScroll = $(e.target).parents().eq(1).nextAll().find("div.pad");
+    var nScrollWrapper = $(e.target).closest('.pad');
+    console.log('flip the script');
+    $(e.target).closest('.flip_panel').addClass('flip');
+    $(nScroll).niceScroll({cursorcolor:"#00F",boxzoom:true,touchbehavior:true});
+
+
+  },
+  'click .back .ok': function(e) {
+    e.preventDefault();
+    $(e.target).closest('.flip_panel').removeClass('flip');
   }
+
 });
+
+Template.menuRoot.rendered = function(){
+  if (!this.rendered){
+     console.log('inside the if statement'); // run my code
+      this.rendered = true;
+    }
+  // console.log('redered view');
+  // $('.bxslider').bxSlider({
+  //   infiniteLoop: false,
+  //   hideControlOnEnd: true,
+  //   pager: false,
+  //   swipeThreshold: 75,
+  //   infiniteLoop: true
+  // });
+};

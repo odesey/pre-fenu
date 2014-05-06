@@ -1,24 +1,43 @@
 <template name="item">
-  <div class="col-md-3 col-sm-6">
-    <!-- Shopping items -->
-    <div class="shopping-item">
-      <!-- Image -->
-      <a href="item-single.html"><img class="img-responsive" src="{{picture}}" alt="" /></a>
-      <!-- Shopping item name / Heading -->
-      <h4 class="pull-left"><a href="item-single.html">{{name}}</a></h4>
-      <span class="item-price pull-right">${{price}}</span>
-      <div class="clearfix"></div>
-      <!-- Paragraph -->
-      <p>Lorem ipsum dolor sit amet, conse ctetur adipis cicing elit.</p>
-      <!-- Buy now button -->
-      <div class="visible-xs">
-        <a class="order btn btn-danger btn-sm" href="#">Order</a>
+  <li>
+    <div class="col-md-3 col-sm-6 thumb contact flip_panel">
+      <!-- Shopping items -->
+      <div class="shopping-item front">
+        <!-- Image -->
+        <a href="#"><img class="img-responsive" src="{{picture}}" alt="" /></a>
+        <!-- Shopping item name / Heading -->
+        <h4 class="pull-left"><a href="#">{{name}}</a></h4>
+        <span class="item-price pull-right">${{price}}</span>
+        <!-- <div class="clearfix"></div> -->
+        <!-- Paragraph -->
+        <p class="">Lorem ipsum dolor sit amet, conse ctetur adipis cicing elit.</p>
+        <!-- Buy now button -->
+        <div class="visible-xs">
+          <a class="order btn btn-danger btn-sm" href="#">Order</a>
+        </div>
+        <!-- Shopping item hover block & link -->
+        <div class="item-hover br-red hidden-xs"></div>
+        <a class="order link hidden-xs" href="#">Order</a>
+        <!-- Hot tag -->
+        <span class="hot-tag br-red">New</span>
       </div>
-      <!-- Shopping item hover block & link -->
-      <div class="item-hover br-red hidden-xs"></div>
-      <a class="order link hidden-xs" href="#">Order</a>
-      <!-- Hot tag -->
-      <span class="hot-tag br-red">New</span>
+
+      <div class="back">
+        <div class="pad shopping-item">
+          <div style="height:100%; ">
+            <h3>{{name}}</h3>
+            <p style="height:100%;">{{description}}</p>
+                  <div class="item-hover br-red hidden-xs"></div>
+        <a class="order link hidden-xs" href="#">Order</a>
+            <button class="ok btn btn-primary">Ok</button>
+            <div class="visible-xs">
+              <a class="order btn btn-danger btn-sm" href="#">Order</a>
+              <button class="ok btn btn-primary">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-  </div>
+</li>
 </template>
