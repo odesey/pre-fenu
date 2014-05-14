@@ -79,7 +79,7 @@ Template.header.events({
 });
 
 Template.header.rendered = function(){
-  $.slidebars();
+  // $.slidebars();
   var timeRef = Session.get("lastReadTime");
   var messageList = $('[data-submitted]');
   var i = 0;

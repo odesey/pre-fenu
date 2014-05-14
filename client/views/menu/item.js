@@ -15,3 +15,16 @@
 
 //   }
 // });
+
+// Template.item.rendered = function(){
+//   console.log($('.bxslider'));
+//   console.log('redered view');
+//   $('.bxslider').bxSlider({
+//       infiniteLoop: false,
+//       hideControlOnEnd: true,
+//       pager: false,
+//       swipeThreshold: 75,
+//       infiniteLoop: true
+//     });
+  
+// };

@@ -61,6 +61,44 @@ Template.paymentSummary.helpers({
 });
 
 Template.paymentSummary.events({
+  'click .quick-button-small': function (e) {
+    // e.preventDefault();
+    var clickedGuest = $(e.currentTarget).children().eq(0).text();
+    var currentGuest = Session.get("currentGuest");
+
+    if (clickedGuest == currentGuest) {
+      $("#sortRow").removeClass("animated flipInX").addClass("animated flipOutX");
+
+      if ($("#sorts").is(':visible')) {
+        $('#sortRow').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $("#paymentOptions").toggle();
+          $("#sortRow").find("h2").text("Pay Using:");
+          $("#sortRow").removeClass("animated flipOutX").addClass("animated flipInX");
+          $("#sorts").toggle().addClass("animated flipInX");
+        });
+        console.log(1);
+      } else {
+        $('#sortRow').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+          $("#sorts").toggle();
+          $("#sortRow").find("h2").text("Split Tab:");
+          $("#sortRow").removeClass("animated flipOutX").addClass("animated flipInX");
+          $("#paymentOptions").toggle().addClass("animated flipInX");
+        });
+        console.log(2);
+      };
+
+      $(".quick-button-small").each(function(index, el){
+        if ($(el).children().eq(0).text() !== clickedGuest) {
+          $(el).hasClass("flipOutX") ? $(el).removeClass("animated flipOutX").addClass("animated flipInY") : $(el).removeClass("animated flipInX").addClass("animated flipOutX");
+        };
+      })
+    } else {
+      $(e.currentTarget).bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {
+           $(e.currentTarget).removeClass("animated shake");
+              }).addClass("animated shake");
+      // 15459960000 tire part number
+    };
+  },
   'click .stdSort': function (e) {
     e.preventDefault();
     var splitButton = $('.button-group').find('.active');

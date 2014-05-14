@@ -44,7 +44,7 @@ Credits to Matteo Spinelli, http://cubiq.org
             Should I use DOM querySelectorAll? All mobile phone browsers should be capable of it now...
         */
         var $slide = plugin.$el.find('.slide');
-        var $row = plugin.$el.find('.row');
+        var $row = plugin.$el.find('.sliderow');
 
         var slideWidth = $slide.eq(0).width();
         var slideHeight = "";

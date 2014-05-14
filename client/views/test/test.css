@@ -654,6 +654,7 @@ a:hover {
 .inner-page .general .tab-content ul li i {
   color: #32c8de;
 }
+
 /**
  * BxSlider v4.1.2 - Fully loaded, responsive content slider
  * http://bxslider.com
@@ -686,12 +687,12 @@ a:hover {
 ===================================*/
 
 .bx-wrapper .bx-viewport {
-  -moz-box-shadow: 0 0 5px #ccc;
+/*  -moz-box-shadow: 0 0 5px #ccc;
   -webkit-box-shadow: 0 0 5px #ccc;
   box-shadow: 0 0 5px #ccc;
   border:  5px solid #fff;
   left: -5px;
-  background: #fff;
+  background: #fff;*/
   
   /*fix other elements on the page moving (on Chrome)*/
   -webkit-transform: translatez(0);

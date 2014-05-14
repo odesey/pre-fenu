@@ -30,17 +30,51 @@
 
 <hr>
 
-<div class='row'>
-  <div class='col-sm-6 col-xs-10 col-xs-offset-1 col-sm-offset-2'>
-  	<div class='text-center'>
-  	  <h2>Split Bill:</h2>
-  	</div>
-  	<div id="sorts" class="button-group">
-  	  <button class="stdSort btn active" data-sort-value="name">Equally</button>
-  	  <button class="stdSort btn" data-sort-value="number">By Orders</button>
-  	  <button class="customSort btn" data-sort-value="custom" >Custom</button>
-  	</div>
-  </div>
+<div id="sortRow" class='row' >
+
+    <div>
+    	<div class='text-center'>
+    	  <h2>Split Tab:</h2>
+    	</div>
+    	<div id="sorts" class="button-group text-center">
+    	  <button class="stdSort btn active" data-sort-value="name">Equally</button>
+    	  <button class="stdSort btn" data-sort-value="number">By Orders</button>
+    	  <button class="customSort btn" data-sort-value="custom" >Custom</button>
+    	</div>
+      <div id="paymentOptions" style="display:none;">
+        <div class="col-sm-4 col-md-2 col-xs-4" >
+          <a href='#'>
+            <img src="pepsized_bitcoin03.png">
+          </a>
+        </div>
+          <div class="col-sm-4 col-md-2 col-xs-4" >
+            <a href='#'>
+              <img src="pepsized_paybycreditcard.png">
+            </a>
+          </div>
+          <div class="col-sm-4 col-md-2 col-xs-4" >
+            <a href='#'>
+              <img src="pepsized_dwolla.png">
+            </a>
+          </div>
+          <div class="col-sm-4 col-md-2 col-xs-4" >
+            <a href='#'>
+              <img src="pepsized_paypal.png">
+            </a>
+          </div>
+          <div class="col-sm-4 col-md-2 col-xs-4" >
+            <a href='#'>
+              <img src="pepsized_square.png">
+            </a>
+          </div>
+          <div class="col-sm-4 col-md-2 col-xs-4" >
+            <a href='#'>
+              <img src="pepsized_googlewallet.png">
+            </a>
+          </div>
+      </div>
+    </div>
+
 </div>
 
 <hr>
@@ -49,7 +83,7 @@
 	<div class="isotope">
 		{{#each guestBallance}}
 	  <div class="payBox col-sm-2 col-md-1 col-xs-4" data-iTab="{{this.[1]}}" data-category="transition">
-	  	<a class="quick-button-small ">
+	  	<a class="quick-button-small " href='#'>
 		    <h3 class="name">{{this.[0]}}</h3>
 		    <h5 class="number">${{eqBallance}}</h5>
 		    <span class="icon-user notification red"></span>
@@ -58,7 +92,6 @@
 	  {{/ each}}
 	</div>
 </div>
-
 
 <div class='modal fade' id='customBillModal' tabindex='-1'>
   <div class='modal-dialog'>

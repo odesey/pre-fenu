@@ -59,16 +59,17 @@ Template.menuRoot.events({
 });
 
 Template.menuRoot.rendered = function(){
-  if (!this.rendered){
-     console.log('inside the if statement'); // run my code
-      this.rendered = true;
-    }
+  // console.log($('.bxslider'));
   // console.log('redered view');
-  // $('.bxslider').bxSlider({
-  //   infiniteLoop: false,
-  //   hideControlOnEnd: true,
-  //   pager: false,
-  //   swipeThreshold: 75,
-  //   infiniteLoop: true
-  // });
+  $('.bxslider').bxSlider({
+    infiniteLoop: false,
+    hideControlOnEnd: true,
+    pager: false,
+    swipeThreshold: 75,
+    infiniteLoop: true
+  });
 };
+
+// UI.body.rendered = function () {
+//   console.log('rendered the body');
+// }

@@ -136,7 +136,16 @@ Template.test.rendered = function(){
     infiniteLoop: false,
     hideControlOnEnd: true,
     pager: false,
-    swipeThreshold: 75,
-    infiniteLoop: true
+    swipeThreshold: 50,
+    preventDefaultSwipeY: true
+  });
+  $('.vrow').bxSlider({
+    infiniteLoop: false,
+    hideControlOnEnd: true,
+    pager: false,
+    swipeThreshold: 50,
+    mode: 'vertical',
+    preventDefaultSwipeX: true
+
   });
 };
