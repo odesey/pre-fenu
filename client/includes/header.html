@@ -5,7 +5,7 @@
     <a class='navbar-brand' href="{{pathFor 'reDirect'}}">Fenu
       <!-- <img width="21" height="21" class="logo-xs" alt="Fenu" src="/images/logo_xs.svg" /> -->
     </a>
-    <div class='sb-toggle-left toggle-nav btn pull-left'>
+    <div class='toggle-nav btn pull-left'>
       <i class='icon-reorder'></i>
     </div>
     <ul class='nav'>
@@ -109,11 +109,19 @@
               Pay Bill
             </a>
           </li>
+          <li>
+            <a href="{{pathFor 'btf'}}" >
+              <i class='icon-ticket'></i>
+              BTF
+            </a>
+          </li>
         </ul>
       </li>
     </ul>
   </nav>
 </header>
 {{>messageForm}}
+
+
 
 </template>

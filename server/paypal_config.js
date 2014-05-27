@@ -1,24 +1,13 @@
-this.paypalConf = {
+paypalConf = {
   host: "api.sandbox.paypal.com",
-  clientId: "pHQcZ1cH0lnX5Mub4MGzo_-FH6witB3_2zuRYgvUFxMHFH6wiAe3zCRDqatu3",
-  clientSecret: "Xk7-EDJqERAU5up6wjeVoRE6WM2OoIsUT3ouxVRKUmjX38b4k0-q6t_UHei"
+  clientId: "AfReXBAKk5i0Fv0_FXqrwhAb7vrkQYbqpHzkQ99ARkj4KyUPSK1cqjxwHeWK",
+  clientSecret: "EJi9xBDsJQDXesjxZI-WuJ6tPUvC3BciUhP1N9dobENyH3TYnx4euKbSAUbb"
 };
- 
- 
-// 2. Create two collections to save our payments and the Paypal tokens.
- 
- 
-this.PaypalPayments = new Meteor.Collection('paypal_payments');
 
-this.PaypalTokens = new Meteor.Collection('paypal_tokens');
- 
- 
-// # 3. Create the three methods to:
-// #    - Get a valid token to make API calls. (retrieve a new one if invalid)
-// #    - Create a payment
-// #    - Execute a payment.
- 
- 
+// PaypalPayments = new Meteor.Collection('paypal_payments');
+
+// PaypalTokens = new Meteor.Collection('paypal_tokens');
+
 Meteor.methods({
   'getPaypalToken': function() {
     var auth, isTokenValid, token;
@@ -32,6 +21,7 @@ Meteor.methods({
         timestamp: -1
       }
     });
+    console.log(token);
     if (token != null) {
       isTokenValid = Math.ceil((new Date().getTime() - token.timestamp) / 1000);
     }
@@ -96,7 +86,8 @@ Meteor.methods({
     return res.data;
   },
   'executePaypalPayment': function(payerId) {
-    var payment, res, token, url;
+    console.log(payerId);
+    var payment, res, token, url, _ref;
     payment = PaypalPayments.findOne({
       userId: this.userId
     }, {
@@ -117,7 +108,7 @@ Meteor.methods({
     });
     payment = res.data;
     payment['userId'] = this.userId;
-    if (payment.state === 'approved') {
+    if ((_ref = payment.state) === 'approved' || _ref === 'pending') {
       PaypalPayments.insert(payment);
     }
     if (payment.state === 'approved') {

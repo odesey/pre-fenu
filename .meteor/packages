@@ -10,3 +10,7 @@ accounts-ui-bootstrap-3
 accounts-password
 roles
 jqBootstrapValidation
+coffeescript
+moment
+http
+reveal-js

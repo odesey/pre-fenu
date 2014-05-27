@@ -6,7 +6,8 @@
       "iron-router": {},
       "accounts-ui-bootstrap-3": {},
       "roles": {},
-      "jqBootstrapValidation": {}
+      "jqBootstrapValidation": {},
+      "reveal-js": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -26,13 +27,18 @@
       },
       "roles": {
         "git": "https://github.com/alanning/meteor-roles.git",
-        "tag": "v1.2.8",
-        "commit": "68844ba216c348d332bdb840825850f497f515bb"
+        "tag": "v1.2.9",
+        "commit": "969b17fac5dfec66b6b12bfce4e37471d1a241d4"
       },
       "jqBootstrapValidation": {
         "git": "https://github.com/wahyuaw/meteor-jqBootstrapValidation.git",
         "tag": "v0.0.1",
         "commit": "66a91f82b8a8a955e639357ebf895f3256f0df16"
+      },
+      "reveal-js": {
+        "git": "https://github.com/neo-technologies/meteor-reveal-js.git",
+        "tag": "v2.6.2",
+        "commit": "66ca194e49e3c48fe7d4a62ac89c7ed0d6e0814a"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

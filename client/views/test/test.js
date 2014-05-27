@@ -119,33 +119,29 @@ Template.test.events({
     console.log('flip the script');
     $(e.target).closest('.thumb').addClass('flip');
   },
-  'click .thumb .edit-submit': function(e) {
-    e.preventDefault;
-    $(e.target).closest('.thumb').removeClass('flip');
+  'click .md-trigger': function(e) {
+
+    $("#modal-18").addClass('md-show');
+
+    setTimeout( function() {
+      $(document.documentElement).addClass( 'md-perspective' );
+    }, 25 );
+
   },
-  'click .thumb .shopping-item': function(e) {
-    e.preventDefault;
-    console.log('flip the script');
-    $(e.target).closest('.thumb').addClass('flip');
+  'click .md-close': function(e) {
+    $("#modal-18").removeClass('md-show');
+    setTimeout( function() {
+      $(document.documentElement).removeClass( 'md-perspective' );
+    }, 30 );
+  },
+  'click .pageNav': function(e) {
+    
+    
   }
+
 });
 
 Template.test.rendered = function(){
-  console.log('redered view');
-  $('.bxslider').bxSlider({
-    infiniteLoop: false,
-    hideControlOnEnd: true,
-    pager: false,
-    swipeThreshold: 50,
-    preventDefaultSwipeY: true
-  });
-  $('.vrow').bxSlider({
-    infiniteLoop: false,
-    hideControlOnEnd: true,
-    pager: false,
-    swipeThreshold: 50,
-    mode: 'vertical',
-    preventDefaultSwipeX: true
+  
 
-  });
 };

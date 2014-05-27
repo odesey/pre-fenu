@@ -1,4 +1,10 @@
 // if (Meteor.isClient) {
+//   Meteor.startup( function() {
+//       Reveal.initialize();
+//     });
+
+// }
+// if (Meteor.isClient) {
 //   Template.hello.greeting = function () {
 //     return "Welcome to pre-fenu.";
 //   };

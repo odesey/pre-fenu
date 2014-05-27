@@ -36,7 +36,11 @@ Template.menuRoot.events({
     }
     if (Session.get("currentGuest") && Session.get("tableID")) {
       Meteor.call('orderItem', order, function(error, id) {
-
+        if (error) {
+          $.growl('There was a problem with your order, Jenny has been notified and is on her way', { type: 'danger' });
+        } else {
+          $.growl('Your order has been recieved!', { type: 'success' });
+        };
       });
     };
     console.log('order an item from the menu');
@@ -61,13 +65,13 @@ Template.menuRoot.events({
 Template.menuRoot.rendered = function(){
   // console.log($('.bxslider'));
   // console.log('redered view');
-  $('.bxslider').bxSlider({
-    infiniteLoop: false,
-    hideControlOnEnd: true,
-    pager: false,
-    swipeThreshold: 75,
-    infiniteLoop: true
-  });
+  // $('.bxslider').bxSlider({
+  //   infiniteLoop: false,
+  //   hideControlOnEnd: true,
+  //   pager: false,
+  //   swipeThreshold: 75,
+  //   infiniteLoop: true
+  // });
 };
 
 // UI.body.rendered = function () {

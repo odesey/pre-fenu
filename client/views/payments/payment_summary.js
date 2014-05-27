@@ -61,6 +61,9 @@ Template.paymentSummary.helpers({
 });
 
 Template.paymentSummary.events({
+  'click .payments': function (e) {
+    console.log('payment option choosen');
+  },
   'click .quick-button-small': function (e) {
     // e.preventDefault();
     var clickedGuest = $(e.currentTarget).children().eq(0).text();
@@ -76,7 +79,6 @@ Template.paymentSummary.events({
           $("#sortRow").removeClass("animated flipOutX").addClass("animated flipInX");
           $("#sorts").toggle().addClass("animated flipInX");
         });
-        console.log(1);
       } else {
         $('#sortRow').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
           $("#sorts").toggle();
@@ -84,7 +86,6 @@ Template.paymentSummary.events({
           $("#sortRow").removeClass("animated flipOutX").addClass("animated flipInX");
           $("#paymentOptions").toggle().addClass("animated flipInX");
         });
-        console.log(2);
       };
 
       $(".quick-button-small").each(function(index, el){
@@ -96,7 +97,8 @@ Template.paymentSummary.events({
       $(e.currentTarget).bind("animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd", function() {
            $(e.currentTarget).removeClass("animated shake");
               }).addClass("animated shake");
-      // 15459960000 tire part number
+      // 15459960000 tire part number front 74wr0ecdwsxl
+      // 15479850000 tire part number rear 135wr0ecdwsxl
     };
   },
   'click .stdSort': function (e) {

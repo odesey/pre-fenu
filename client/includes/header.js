@@ -70,12 +70,13 @@ Template.header.events({
     var messageList = $('[data-submitted]');
     $(messageCount).text(0 + '/' + messageList.length);
     Session.set("lastReadTime", new Date().getTime());
+  },
+  'click .toggle-nav': function(e) {
+    // e.preventDefault();
+    console.log('toggle slide out menu');
+    $(".st-container").toggleClass("st-menu-open")
+    // $.slidebars();
   }
-  // 'click .sb-toggle-left': function(e) {
-  //   // e.preventDefault();
-  //   console.log('toggle slide bars');
-  //   // $.slidebars();
-  // }
 });
 
 Template.header.rendered = function(){
