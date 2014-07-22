@@ -3,7 +3,7 @@ Meteor.publish('tables', function() {
 });
 
 Meteor.publish("staff", function () {
-    return Meteor.users.find({}, {fields: {username: 1,'profile': 1}});
+  return Meteor.users.find({}, {fields: {username: 1,'profile': 1}});
 });
 
 Meteor.publish('messages', function() {
